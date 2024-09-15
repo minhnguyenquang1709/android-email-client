@@ -1,0 +1,102 @@
+<resources>
+    <string name="navigation_drawer_open">Open navigation bar</string>
+    <string name="navigation_drawer_close">Close navigation bar</string>
+    <string name="login">Log in</string>
+    <string name="emailSender">Email\n</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="click_to_login">Click to log in</string>
+    <string name="click_to_register">Click to register</string>
+    <string name="search_in_mail">Search in mail</string>
+    <string name="log_in">Log In</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="please_log_in_with_your_information">Please log in with your information</string>
+    <string name="remember_me">Remember me</string>
+    <string name="i_forgot_my_password">I forgot my password</string>
+    <string name="home">Home</string>
+    <string name="chat">Chat</string>
+    <string name="space">Space</string>
+    <string name="meet">Meet</string>
+    <string name="search_in_chat_and_spaces">Search in chat and spaces</string>
+    <string name="compose">Compose</string>
+    <string name="new_chat">New chat</string>
+    <string name="please_register_with_your_information">Please register with your information</string>
+    <string name="to">To</string>
+    <string name="subject">Subject</string>
+    <string name="message">Message</string>
+    <string name="to_me">to me</string>
+    <string name="reply">Reply</string>
+    <string name="reply_all">Reply All</string>
+    <string name="forward">Forward</string>
+    <string name="inbox">INBOX</string>
+    <string name="chat_1">CHAT</string>
+    <string name="find_someone_to_chat_with_by_tapping_the_new_chat_button">Find someone to chat with by tapping the new chat button.</string>
+    <string name="inbox_1">Inbox</string>
+    <string name="lables">LABLES</string>
+    <string name="starred">Starred</string>
+    <string name="sent">Sent</string>
+    <string name="snoozed">Snoozed</string>
+    <string name="all_mail">All mail</string>
+    <string name="spam">Spam</string>
+    <string name="settings">SETTINGS</string>
+    <string name="settings_1">Settings</string>
+    <string name="log_out">Log out</string>
+    <string name="from">From</string>
+    <string name="me">me</string>
+    <string name="sign_in_to_your_account">Sign in to your account</string>
+    <string name="email_address">Email Address</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="rachel_jacobs">Rachel Jacobs</string>
+    <string name="_47_emails">47 emails</string>
+    <string name="read_later">Read later</string>
+    <string name="_16_emails">16 emails</string>
+    <string name="_245_emails">245 emails</string>
+    <string name="_14_emails">14 emails</string>
+    <string name="trash">Trash</string>
+    <string name="default123">Default</string>
+    <string name="user_name">Jenny Boyer</string>
+    <string name="main_name">Helena</string>
+    <string name="time_sent">40m ago</string>
+    <string name="content">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet consectetur adipiscing elit duis tristique. Enim lobortis scelerisque fermentum dui faucibus in ornare. Faucibus vitae aliquet nec ullamcorper sit amet risus nullam. Risus feugiat in ante metus dictum. Iaculis at erat pellentesque adipiscing commodo elit at imperdiet. Adipiscing tristique risus nec feugiat in. Nibh praesent tristique magna sit amet purus gravida. Egestas diam in arcu cursus euismod quis viverra nibh cras. Tincidunt nunc pulvinar sapien et ligula ullamcorper. Rhoncus mattis rhoncus urna neque viverra justo nec. Quisque non tellus orci ac. Cursus vitae congue mauris rhoncus aenean vel elit scelerisque mauris. Sed tempus urna et pharetra.
+</string>
+    <string name="profile_desc">handsome</string>
+    <string name="app_name">Gmail\n</string>
+    <string name="email_subject">
+What is your opinion about this boss?
+</string>
+    <string name="email_content">
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sit amet consectetur adipiscing elit duis tristique. Enim lobortis scelerisque fermentum dui faucibus in ornare. Faucibus vitae aliquet nec ullamcorper sit amet risus nullam. Risus feugiat in ante metus dictum. Iaculis at erat pellentesque adipiscing commodo elit at imperdiet. Adipiscing tristique risus nec feugiat in. Nibh praesent tristique magna sit amet purus gravida. Egestas diam in arcu cursus euismod quis viverra nibh cras. Tincidunt nunc pulvinar sapien et ligula ullamcorper. Rhoncus mattis rhoncus urna neque viverra justo nec. Quisque non tellus orci ac. Cursus vitae congue mauris rhoncus aenean vel elit scelerisque mauris. Sed tempus urna et pharetra.
+</string>
+    <string name="email_name">Kristopher Cremin</string>
+    <string name="forwardText">Forward</string>
+    <string name="replyText">Reply</string>
+    <string name="backbtn">backBtn</string>
+    <string name="btnforword">btnForword</string>
+    <string name="profileimage">profileImage</string>
+    <string name="_1h_ago">1h ago</string>
+    <string name="kris13_gmail_com">kris13@gmail.com</string>
+    <string name="menubtm">menuBtm</string>
+    <string name="trashbtn">Trashbtn</string>
+    <string name="search">Search</string>
+    <string name="searching">Searching</string>
+
+    <!-- Settings -->
+    <string name="button_back">A button to go back</string>
+
+    <string name="label_appearance">Appearance</string>
+
+    <string name="label_notifications">Notifications</string>
+    <string name="switch_push_notifications">Push notifications</string>
+    <string name="switch_sound">Sound</string>
+    <string name="switch_notifications_summary">Notifications summary</string>
+
+    <string name="label_performance">Performance</string>
+    <string name="switch_high_res_img">High resolution images</string>
+    <string name="switch_auto_downloads">Automatic downloads</string>
+    <string name="switch_limit_data">Limit data usage</string>
+
+    <string name="label_search_history">Search history</string>
+
+    <string name="label_clear_his">Clear search history</string>
+</resources>

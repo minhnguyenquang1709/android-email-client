@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="gray">#EAEDEA</color>
+    <color name="btn_login">#283FB1</color>
+    <color name="red">#FFE13535</color>
+    <color name="red_overlay">#80E13535</color>
+    <color name="button_background">#FFDDDD</color>
+    <color name="btn_bg">#611717</color>
+    <color name="red_settings">#FFE13535</color>
+    <color name="red_toolbar_bg">#33E13535</color>
+    <color name="red_text">#FF611717</color>
+    <color name="switch_settings_label">#99000000</color>
+    <color name="green">#FF2CD747</color>
+
+</resources>

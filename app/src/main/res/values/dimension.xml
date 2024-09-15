@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="icon_back_width">26dp</dimen>
+    <dimen name="icon_back_height">29dp</dimen>
+    <dimen name="padding_horizontal_toolbar">24dp</dimen>
+    <dimen name="label_settings_section">24sp</dimen>
+    <dimen name="switch_settings_label">16sp</dimen>
+
+    <dimen name="btn_clear_search_his_width">247dp</dimen>
+    <dimen name="btn_clear_search_his_height">45dp</dimen>
+    <dimen name="switch_margin_vertical">10dp</dimen>
+    <dimen name="profileIcon">48dp</dimen>
+
+    <!-- Main Toolbar -->
+    <dimen name="width_profile_icon">40dp</dimen>
+    <dimen name="margin_start_profile_name">8dp</dimen>
+    <dimen name="margin_end_search_btn">48dp</dimen>
+    <dimen name="size_text_profile_name">24sp</dimen>
+    <dimen name="radius_main_toolbar_icon">50dp</dimen>
+    <dimen name="padding_vertical_toolbar">17dp</dimen>
+</resources>
