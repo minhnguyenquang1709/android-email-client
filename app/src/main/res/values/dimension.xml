@@ -18,4 +18,5 @@
     <dimen name="size_text_profile_name">24sp</dimen>
     <dimen name="radius_main_toolbar_icon">50dp</dimen>
     <dimen name="padding_vertical_toolbar">17dp</dimen>
+    <dimen name="height_main_toolbar">74dp</dimen>
 </resources>
