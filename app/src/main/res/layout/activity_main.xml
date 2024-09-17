@@ -11,14 +11,34 @@
         android:layout_height="@dimen/height_main_toolbar"
         android:name="vn.edu.usth.email.Fragment.MainToolbarFragment"/>
 
-    <fragment
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/main_tablayout"/>
+        android:layout_height="wrap_content">
 
-    <fragment
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:icon="@drawable/folder_icon"
+            />
+
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/inbox_icon" />
+
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:icon="@drawable/star_icon" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/main_view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/main_viewpager"/>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

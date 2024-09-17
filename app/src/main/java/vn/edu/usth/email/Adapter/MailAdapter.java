@@ -21,7 +21,7 @@ public class MailAdapter extends RecyclerView.Adapter<MailVH> {
     private ArrayList<EmailItem> emails;
 
     public MailAdapter(Context context, ArrayList<EmailItem> emails){
-        this.context = context;
+        this.context = context; // for
         this.emails = emails;
     }
 
@@ -29,7 +29,7 @@ public class MailAdapter extends RecyclerView.Adapter<MailVH> {
     @Override
     public MailVH onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(this.context);
-        View email = inflater.inflate(R.layout.item_love, parent, false);
+        View email = inflater.inflate(R.layout.item_inbox, parent, false);
         MailVH mailVh = new MailVH(email);
         return mailVh;
     }
@@ -38,7 +38,7 @@ public class MailAdapter extends RecyclerView.Adapter<MailVH> {
     public void onBindViewHolder(@NonNull MailVH holder, int position) {
         // bind email item data to the ViewHolder
         EmailItem emailItem = this.emails.get(position);
-        holder.setProfileImg(R.drawable.profile_picture); /**@TODO: change with dynamic image source later*/
+        holder.setProfileImg(R.drawable.profile_picture0); /**@TODO: replace with dynamic image source later*/
         holder.setUsername(emailItem.getUsername());
         holder.setSubject(emailItem.getSubject());
         holder.setTimeSent(emailItem.getTimeSent());
@@ -51,8 +51,8 @@ public class MailAdapter extends RecyclerView.Adapter<MailVH> {
             @Override
             public void onClick(View v) {
                 Log.i("item", "open mail");
-                Intent intent = new Intent(context, ReadMailActivity.class);
-                context.startActivity(intent);
+                // Intent intent = new Intent(context, ReadMailActivity.class);
+                // context.startActivity(intent);
             }
         });
 
@@ -69,9 +69,4 @@ public class MailAdapter extends RecyclerView.Adapter<MailVH> {
     public int getItemCount() {
         return this.emails.size();
     }
-
-    public interface OnItemClickListener {
-        void onItemClick();
-    }
-
 }

@@ -19,4 +19,9 @@
     <dimen name="radius_main_toolbar_icon">50dp</dimen>
     <dimen name="padding_vertical_toolbar">17dp</dimen>
     <dimen name="height_main_toolbar">74dp</dimen>
+
+    <!-- Email Item -->
+    <dimen name="size_star">4dp</dimen>
+    <dimen name="width_bottom_seperator">12dp</dimen>
+    <dimen name="gap_fromG_profile_image">8dp</dimen>
 </resources>

@@ -23,4 +23,22 @@
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">#666666</item>
     </style>
+
+    <!-- InboxFragment -->
+    <style name="inbox_username">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#66000000</item>
+        <item name="singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+    <style name="inbox_subject">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#000000</item>
+        <item name="singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+    <style name="inbox_content">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">#99000000</item>
+    </style>
 </resources>

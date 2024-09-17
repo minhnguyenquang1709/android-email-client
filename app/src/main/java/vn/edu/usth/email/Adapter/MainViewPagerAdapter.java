@@ -1,29 +1,25 @@
 package vn.edu.usth.email.Adapter;
 
+import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-public class MainViewPagerAdapter extends FragmentPagerAdapter {
-    private final int PAGE_COUNT = 3;
-    private String titles[] = new String[] {"Folder", "Inbox", "Starred"};
+public class MainViewPagerAdapter extends FragmentStateAdapter {
 
-    public MainViewPagerAdapter(FragmentManager fm){
-        super(fm);
-    }
 
     @NonNull
     @Override
-    public Fragment getItem(int position) {
-        switch (position){
-            case 0:
-        }
+    public Fragment createFragment(int position) {
         return null;
     }
 
     @Override
-    public int getCount() {
-        return PAGE_COUNT;
+    public int getItemCount() {
+        return 0;
     }
 }

@@ -10,9 +10,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import vn.edu.usth.email.Model.EmailItem;
 import vn.edu.usth.email.R;
 
 public class MailVH extends RecyclerView.ViewHolder {
+    private EmailItem data;
     private ImageView profileImg;
     private TextView username;
     private TextView subject;
@@ -24,6 +26,7 @@ public class MailVH extends RecyclerView.ViewHolder {
     public MailVH(@NonNull View itemView) {
         super(itemView);
 
+        // link ViewHolder with child components for easy
         this.profileImg = itemView.findViewById(R.id.profile_image);
         this.username = itemView.findViewById(R.id.user_name);
         this.subject = itemView.findViewById(R.id.subject);
