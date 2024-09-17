@@ -8,7 +8,7 @@
     android:background="#FFF6F4">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerMails"
+        android:id="@+id/recycler_mail"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

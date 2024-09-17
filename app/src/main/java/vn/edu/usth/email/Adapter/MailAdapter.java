@@ -38,7 +38,7 @@ public class MailAdapter extends RecyclerView.Adapter<MailVH> {
     public void onBindViewHolder(@NonNull MailVH holder, int position) {
         // bind email item data to the ViewHolder
         EmailItem emailItem = this.emails.get(position);
-        holder.setProfileImg(R.drawable.profile_picture0); /**@TODO: replace with dynamic image source later*/
+        holder.setProfileImg(R.drawable.profile_picture1);
         holder.setUsername(emailItem.getUsername());
         holder.setSubject(emailItem.getSubject());
         holder.setTimeSent(emailItem.getTimeSent());

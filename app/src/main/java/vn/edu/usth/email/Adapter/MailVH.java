@@ -77,7 +77,12 @@ public class MailVH extends RecyclerView.ViewHolder {
     }
 
     public void setTimeSent(int timeSent) {
-        this.timeSent.setText("" + timeSent);
+        if(timeSent < 60){
+            this.timeSent.setText(timeSent + "s ago");
+        }else{
+            this.timeSent.setText(timeSent/60+"m ago");
+        }
+
     }
 
     public void setContent(String content) {

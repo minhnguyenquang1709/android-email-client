@@ -1,32 +1,25 @@
 package vn.edu.usth.email.Activity;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.viewpager.widget.ViewPager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
 
 import vn.edu.usth.email.Adapter.MainViewPagerAdapter;
-import vn.edu.usth.email.Fragment.MainToolbarFragment;
 import vn.edu.usth.email.R;
 
 public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager2 mainViewPager;
     private MainViewPagerAdapter pagerAdapter;
-
-    private static final int PAGE_COUNT = 3;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,5 +34,27 @@ public class MainActivity extends AppCompatActivity {
 
         tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         mainViewPager = findViewById(R.id.main_view_pager);
+        pagerAdapter = new MainViewPagerAdapter(this);
+        mainViewPager.setOffscreenPageLimit(3);
+        mainViewPager.setAdapter(pagerAdapter);
+
+        // use TabLayoutMediator to link TabLayout with ViewPager2
+        new TabLayoutMediator(tabLayout, mainViewPager, new TabLayoutMediator.TabConfigurationStrategy() {
+            @Override
+            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                switch (position){
+                    case 0:
+                        tab.setIcon(R.drawable.folder_icon);
+                        break;
+                    case 1:
+                        tab.setIcon(R.drawable.inbox_icon);
+                        break;
+                    case 2:
+                        tab.setIcon(R.drawable.star_icon);
+                        break;
+                    default: tab.setText("Tab");
+                }
+            }
+        }).attach();
     }
 }
