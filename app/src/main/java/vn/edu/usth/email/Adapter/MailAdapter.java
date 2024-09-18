@@ -38,7 +38,15 @@ public class MailAdapter extends RecyclerView.Adapter<MailVH> {
     public void onBindViewHolder(@NonNull MailVH holder, int position) {
         // bind email item data to the ViewHolder
         EmailItem emailItem = this.emails.get(position);
-        holder.setProfileImg(R.drawable.profile_picture1);
+        double numb = Math.random();
+        if (numb < 0.33){
+            holder.setProfileImg(R.drawable.profile_picture1);
+        } else if (numb < 0.67){
+            holder.setProfileImg(R.drawable.profile_picture2);
+        } else{
+            holder.setProfileImg(R.drawable.profile_picture3);
+        }
+
         holder.setUsername(emailItem.getUsername());
         holder.setSubject(emailItem.getSubject());
         holder.setTimeSent(emailItem.getTimeSent());

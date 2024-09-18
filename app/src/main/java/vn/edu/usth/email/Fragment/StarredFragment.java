@@ -3,11 +3,20 @@ package vn.edu.usth.email.Fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
+
+import vn.edu.usth.email.Adapter.MailAdapter;
+import vn.edu.usth.email.Model.EmailItem;
 import vn.edu.usth.email.R;
 
 /**
@@ -16,6 +25,9 @@ import vn.edu.usth.email.R;
  * create an instance of this fragment.
  */
 public class StarredFragment extends Fragment {
+    private MailAdapter adapter;
+    private RecyclerView mailListView;
+    private ArrayList<EmailItem> mailList;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +73,29 @@ public class StarredFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_starred, container, false);
+        View view = inflater.inflate(R.layout.fragment_inbox, container, false);
+
+        mailList = new ArrayList<>();
+        createMails(6);
+
+        // enable star icon
+        mailList.forEach(emailItem -> {emailItem.setStarred(true);});
+
+        if(view != null){
+            mailListView = view.findViewById(R.id.recycler_mail);
+            adapter = new MailAdapter(getContext(), mailList);
+            mailListView.setAdapter(adapter);
+            mailListView.setLayoutManager(new LinearLayoutManager(getContext()));
+        }
+
+        return view;
+    }
+
+    public void createMails(int num){
+        for (int i = 0; i < num; i++){
+            mailList.add(new EmailItem("Sammy Hackett", "International Officer", 120, getString(R.string.content)));
+            mailList.add(new EmailItem("Joshua Durgan", "Islands", 2400, getString(R.string.content)));
+            mailList.add(new EmailItem("Karen Lind", "Electronics International", 2580, getString(R.string.content)));
+        }
     }
 }

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:id="@+id/main">
 
@@ -9,36 +10,59 @@
         android:id="@+id/main_toolbar_fragment"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_main_toolbar"
-        android:name="vn.edu.usth.email.Fragment.MainToolbarFragment"/>
+        android:name="vn.edu.usth.email.Fragment.MainToolbarFragment" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="26dp"
-            android:layout_height="26dp"
-            android:icon="@drawable/folder_icon"
-            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabIndicatorColor="@color/red"
+                app:tabIconTint="@color/red">
 
-        <com.google.android.material.tabs.TabItem
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:icon="@drawable/folder_icon" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@drawable/inbox_icon" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:icon="@drawable/star_icon" />
+
+            </com.google.android.material.tabs.TabLayout>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/main_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/write_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:icon="@drawable/inbox_icon" />
+            android:src="@drawable/write_btn"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginBottom="50dp"
+            android:layout_margin="32dp"
+            app:useCompatPadding="true"
+            style="@style/fab"/>
 
-
-        <com.google.android.material.tabs.TabItem
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:icon="@drawable/star_icon" />
-
-    </com.google.android.material.tabs.TabLayout>
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/main_view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
+    </RelativeLayout>
 </LinearLayout>

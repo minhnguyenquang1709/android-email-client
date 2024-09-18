@@ -29,7 +29,7 @@ public class InboxFragment extends Fragment {
     private MailAdapter adapter;
     private RecyclerView mailListView;
     private ArrayList<EmailItem> mailList;
-    FloatingActionButton floatingActionButton;
+
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -78,7 +78,7 @@ public class InboxFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_inbox, container, false);
 
         mailList = new ArrayList<>();
-        createMails(20);
+        createMails(6);
         if(view != null){
             mailListView = view.findViewById(R.id.recycler_mail);
             adapter = new MailAdapter(getContext(), mailList);
@@ -86,22 +86,14 @@ public class InboxFragment extends Fragment {
             mailListView.setLayoutManager(new LinearLayoutManager(getContext()));
         }
 
-        floatingActionButton = view.findViewById(R.id.write_email);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i("InboxFragment", "Write new mail");
-                // Intent intent = new Intent(getActivity(), WriteActivity.class);
-                // startActivity(intent);
-            }
-        });
-
         return view;
     }
 
     public void createMails(int num){
         for (int i = 0; i < num; i++){
             mailList.add(new EmailItem("Sammy Hackett", "International Officer", 120, getString(R.string.content)));
+            mailList.add(new EmailItem("Joshua Durgan", "Islands", 2400, getString(R.string.content)));
+            mailList.add(new EmailItem("Karen Lind", "Electronics International", 2580, getString(R.string.content)));
         }
     }
 }

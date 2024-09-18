@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- FOR INDIVIDUAL VIEW -->
 <resources>
+    <!-- MainActivity AppBar -->
+    <style name="appbar.main" parent="ThemeOverlay.AppCompat.ActionBar">
+
+    </style>
+
     <!-- Floating Action Button -->
     <style name="fab" parent="Widget.MaterialComponents.FloatingActionButton">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
+        <item name="tint">@color/white</item>
         <item name="android:backgroundTint">@color/red</item>
     </style>
 

@@ -23,8 +23,8 @@
             android:layout_centerVertical="true">
 
             <ImageView
-                android:layout_width="@dimen/width_profile_icon"
-                android:layout_height="@dimen/width_profile_icon"
+                android:layout_width="@dimen/size_icon"
+                android:layout_height="@dimen/size_icon"
                 android:src="@drawable/profile_picture0" />
 
             <TextView
