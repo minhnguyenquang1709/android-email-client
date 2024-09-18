@@ -36,7 +36,7 @@ public class MailAdapter extends RecyclerView.Adapter<MailVH> {
 
     @Override
     public void onBindViewHolder(@NonNull MailVH holder, int position) {
-        // bind email item data to the ViewHolder
+        // update the contents of the RecyclerView.ViewHolder.itemView to reflect the item at the given position
         EmailItem emailItem = this.emails.get(position);
         double numb = Math.random();
         if (numb < 0.33){
@@ -55,6 +55,7 @@ public class MailAdapter extends RecyclerView.Adapter<MailVH> {
             holder.setStar(true);
         }
 
+        // start a new Activity to view an email's content
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

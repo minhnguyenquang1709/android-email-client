@@ -2,6 +2,8 @@ package vn.edu.usth.email.Activity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import androidx.activity.EdgeToEdge;
@@ -62,6 +64,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }).attach();
+
+        // setup the AppBar
+        appBar = (Toolbar) findViewById(R.id.appbar_main);
+        setSupportActionBar(appBar);
 
         // setup Floating Button for writing new mail
         floatingActionButton = findViewById(R.id.write_email);

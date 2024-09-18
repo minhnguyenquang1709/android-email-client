@@ -11,7 +11,7 @@
     <dimen name="switch_margin_vertical">10dp</dimen>
     <dimen name="profileIcon">48dp</dimen>
 
-    <!-- Main Toolbar -->
+    <!-- AppBar MainActivity -->
     <dimen name="size_icon">40dp</dimen>
     <dimen name="margin_start_profile_name">8dp</dimen>
     <dimen name="margin_end_search_btn">48dp</dimen>
@@ -19,6 +19,7 @@
     <dimen name="radius_main_toolbar_icon">50dp</dimen>
     <dimen name="padding_vertical_toolbar">17dp</dimen>
     <dimen name="height_main_toolbar">74dp</dimen>
+    <dimen name="appbar_height">64dp</dimen>
 
     <!-- Email Item -->
     <dimen name="size_star">4dp</dimen>

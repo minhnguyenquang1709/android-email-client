@@ -5,12 +5,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:id="@+id/main">
-
+<!--
     <fragment
         android:id="@+id/main_toolbar_fragment"
         android:layout_width="match_parent"
         android:layout_height="@dimen/height_main_toolbar"
         android:name="vn.edu.usth.email.Fragment.MainToolbarFragment" />
+-->
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/appbar_main"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/appbar_height"
+        android:elevation="4dp"
+        android:theme="@style/appbar"
+        app:title="">
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="@dimen/size_icon"
+            android:layout_height="@dimen/size_icon"
+            android:layout_gravity="start"
+            android:scaleType="centerCrop"
+            android:src="@drawable/profile_picture0" />
+
+        <TextView
+            style="@style/appbar.username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"/>
+
+        <ImageButton
+            android:id="@+id/search_button"
+            style="@style/appbar.icon"
+            android:layout_width="@dimen/size_icon"
+            android:layout_height="@dimen/size_icon"
+            android:src="@drawable/search_icon" />
+
+        <ImageButton
+            android:id="@+id/settings_button"
+            style="@style/appbar.icon"
+            android:layout_width="@dimen/size_icon"
+            android:layout_height="@dimen/size_icon"
+            android:src="@drawable/setting2" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <RelativeLayout
         android:layout_width="match_parent"
