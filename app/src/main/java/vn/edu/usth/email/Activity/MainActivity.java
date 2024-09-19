@@ -22,7 +22,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import vn.edu.usth.email.Adapter.MainViewPagerAdapter;
 import vn.edu.usth.email.R;
 
-public class MainActivity extends AppCompatActivity {
+public class    MainActivity extends AppCompatActivity {
     private Toolbar appBar;
     private TabLayout tabLayout;
     private ViewPager2 mainViewPager;

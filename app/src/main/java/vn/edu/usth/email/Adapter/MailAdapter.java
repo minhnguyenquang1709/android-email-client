@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 // import vn.edu.usth.email.Activity.ReadMailActivity;
+import vn.edu.usth.email.Activity.ReadMailActivity;
 import vn.edu.usth.email.Model.EmailItem;
 import vn.edu.usth.email.R;
 
@@ -60,8 +61,14 @@ public class MailAdapter extends RecyclerView.Adapter<MailVH> {
             @Override
             public void onClick(View v) {
                 Log.i("item", "open mail");
-                // Intent intent = new Intent(context, ReadMailActivity.class);
-                // context.startActivity(intent);
+                Intent intent = new Intent(context, ReadMailActivity.class);
+                intent.putExtra("username", emailItem.getUsername());
+                intent.putExtra("timeSent", emailItem.getTimeSent());
+                intent.putExtra("subject", emailItem.getSubject());
+                intent.putExtra("content", emailItem.getContent());
+                intent.putExtra("profileImg", holder.getProfileImgId());
+
+                context.startActivity(intent);
             }
         });
 

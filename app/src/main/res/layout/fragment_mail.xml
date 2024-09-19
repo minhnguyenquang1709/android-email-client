@@ -19,8 +19,7 @@
         android:layout_gravity="center_horizontal"
         android:paddingVertical="15dp"
         android:paddingHorizontal="20dp"
-        android:background="@color/white"
-        >
+        android:background="@color/white">
 
         <ImageButton
             android:id="@+id/backButton"

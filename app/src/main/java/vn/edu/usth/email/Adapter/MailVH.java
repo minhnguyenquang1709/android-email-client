@@ -23,6 +23,8 @@ public class MailVH extends RecyclerView.ViewHolder {
     private RelativeLayout overlay;
     private ImageView star;
 
+    private int profileImgId;
+
     public MailVH(@NonNull View itemView) {
         super(itemView);
 
@@ -64,8 +66,13 @@ public class MailVH extends RecyclerView.ViewHolder {
         return star;
     }
 
+    public int getProfileImgId(){
+        return this.profileImgId;
+    }
+
     public void setProfileImg(int imgId) {
         this.profileImg.setImageResource(imgId);
+        this.profileImgId = imgId;
     }
 
     public void setUsername(String username) {

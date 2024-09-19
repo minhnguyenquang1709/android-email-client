@@ -1,7 +1,6 @@
 package vn.edu.usth.email.Model;
 
 public class EmailItem {
-    // private String imgUrl;
     private String subject;
     private String username;
     private int timeSent;

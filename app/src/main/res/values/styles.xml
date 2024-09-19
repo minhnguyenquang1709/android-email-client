@@ -2,11 +2,20 @@
 <!-- FOR INDIVIDUAL VIEW -->
 <resources>
     <!-- MainActivity AppBar -->
+    <!-- AppBar Theme -->
+    <style name="appbar" parent="ThemeOverlay.AppCompat.ActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:paddingStart">@dimen/padding_horizontal_toolbar</item>
+        <item name="android:paddingEnd">@dimen/padding_horizontal_toolbar</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
     <style name="appbar.icon">
         <item name="android:background">@drawable/button_bg</item>
         <item name="android:radius">50dp</item>
         <item name="android:adjustViewBounds">true</item>
         <item name="android:layout_gravity">end</item>
+        <item name="android:layout_marginStart">12dp</item>
     </style>
     <style name="appbar.username">
         <item name="android:text">@string/rachel_jacobs</item>
