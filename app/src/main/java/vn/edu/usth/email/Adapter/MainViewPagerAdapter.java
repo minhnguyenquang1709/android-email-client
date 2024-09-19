@@ -35,7 +35,6 @@ public class MainViewPagerAdapter extends FragmentStateAdapter {
             case 2:
                 return new StarredFragment();
             default:
-
                 return new InboxFragment();
         }
     }

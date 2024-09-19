@@ -56,23 +56,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:tabIndicatorColor="@color/red"
-                app:tabIconTint="@color/red"
+                app:tabIconTint="@color/red_super_dark"
+                app:tabIndicatorHeight="4dp"
                 android:elevation="4dp">
 
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="26dp"
-                    android:layout_height="26dp"
-                    android:icon="@drawable/folder_icon" />
 
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:icon="@drawable/inbox_icon" />
-
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:icon="@drawable/star_icon" />
 
             </com.google.android.material.tabs.TabLayout>
 

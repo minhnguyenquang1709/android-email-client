@@ -67,6 +67,8 @@ public class    MainActivity extends AppCompatActivity {
             }
         }).attach();
 
+        tabLayout.setTabIconTintResource(R.color.tab_icon_color);
+
         // setup the AppBar
         appBar = (Toolbar) findViewById(R.id.appbar_main);
         setSupportActionBar(appBar);
@@ -97,8 +99,8 @@ public class    MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.i("Floating Action Button", "Write new mail");
-                // Intent intent = new Intent(getActivity(), WriteActivity.class);
-                // startActivity(intent);
+                Intent intent = new Intent(getApplicationContext(), WriteActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -16,6 +16,9 @@
             android:name=".Activity.ReadMailActivity"
             android:exported="false" />
         <activity
+            android:name=".Activity.WriteActivity"
+            android:exported="false" />
+        <activity
             android:name=".Activity.SearchActivity"
             android:exported="false" />
         <activity

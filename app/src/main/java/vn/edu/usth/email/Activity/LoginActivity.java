@@ -11,7 +11,6 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import vn.edu.usth.email.R;
 
@@ -41,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
                 password = passwordInputField.getText().toString();
 
                 // check account
-                if (!email.equals("test@gmail.com")  || !password.equals("12345678")){
+                if (email.equals("test@gmail.com")  || password.equals("12345678")){
                     Toast.makeText(getApplicationContext(), "Incorrect email or password", Toast.LENGTH_SHORT).show();
                 }else{
                     Log.i("LoginActivity", email + " - " + password);

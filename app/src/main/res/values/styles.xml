@@ -4,7 +4,7 @@
     <!-- MainActivity AppBar -->
     <!-- AppBar Theme -->
     <style name="appbar" parent="ThemeOverlay.AppCompat.ActionBar">
-        <item name="colorPrimary">@color/white</item> <!-- background color -->
+        <item name="colorPrimary">@color/red</item> <!-- background color -->
         <item name="android:textColor">@color/black</item>
         <item name="android:paddingStart">@dimen/padding_horizontal_toolbar</item>
         <item name="android:paddingEnd">@dimen/padding_horizontal_toolbar</item>
@@ -90,5 +90,11 @@
     <style name="MyTextInputLayout_overlay">
         <item name="colorOnSurface">@color/black</item>
         <item name="colorPrimary">@color/red</item>
+    </style>
+
+    <!-- Dialog -->
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
     </style>
 </resources>
