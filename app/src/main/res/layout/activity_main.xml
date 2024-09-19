@@ -5,19 +5,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:id="@+id/main">
-<!--
-    <fragment
-        android:id="@+id/main_toolbar_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/height_main_toolbar"
-        android:name="vn.edu.usth.email.Fragment.MainToolbarFragment" />
--->
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/appbar_main"
         android:layout_width="match_parent"
         android:layout_height="@dimen/appbar_height"
-        android:elevation="4dp"
         style="@style/appbar">
 
         <ImageView
@@ -35,18 +27,18 @@
             android:layout_gravity="start"/>
 
         <ImageButton
-            android:id="@+id/search_button"
-            style="@style/appbar.icon"
-            android:layout_width="@dimen/size_icon"
-            android:layout_height="@dimen/size_icon"
-            android:src="@drawable/search_icon" />
-
-        <ImageButton
             android:id="@+id/settings_button"
             style="@style/appbar.icon"
             android:layout_width="@dimen/size_icon"
             android:layout_height="@dimen/size_icon"
             android:src="@drawable/setting2" />
+
+        <ImageButton
+            android:id="@+id/search_button"
+            style="@style/appbar.icon"
+            android:layout_width="@dimen/size_icon"
+            android:layout_height="@dimen/size_icon"
+            android:src="@drawable/search_icon" />
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -64,7 +56,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:tabIndicatorColor="@color/red"
-                app:tabIconTint="@color/red">
+                app:tabIconTint="@color/red"
+                android:elevation="4dp">
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="26dp"

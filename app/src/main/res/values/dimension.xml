@@ -25,4 +25,22 @@
     <dimen name="size_star">4dp</dimen>
     <dimen name="width_bottom_seperator">12dp</dimen>
     <dimen name="gap_fromG_profile_image">8dp</dimen>
+
+    <!-- ReadMailActivity-->
+    <dimen name="marginStart">12dp</dimen>
+    <dimen name="minHeight">550dp</dimen>
+    <dimen name="minHeightTool">60dp</dimen>
+    <dimen name="padding">24dp</dimen>
+    <dimen name="imgWidth">60dp</dimen>
+    <dimen name="imgHeight">60dp</dimen>
+    <dimen name="nameSize">18sp</dimen>
+    <dimen name="textSize">14sp</dimen>
+    <dimen name="lineSpace">5sp</dimen>
+    <dimen name="YTrans">-2.65sp</dimen>
+    <dimen name="buttonMinHeight">120dp</dimen>
+    <dimen name="verPad">16dp</dimen>
+    <dimen name="horPad">30dp</dimen>
+    <dimen name="buttonMarginStart">8dp</dimen>
+    <dimen name="ViewHeight">64dp</dimen>
+    <dimen name="columnCount">4</dimen>
 </resources>

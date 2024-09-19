@@ -1,10 +1,10 @@
 package vn.edu.usth.email.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -27,6 +27,8 @@ public class    MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager2 mainViewPager;
     private MainViewPagerAdapter pagerAdapter;
+    private ImageButton searchBtn;
+    private ImageButton settingsBtn;
     FloatingActionButton floatingActionButton;
 
     @Override
@@ -68,6 +70,26 @@ public class    MainActivity extends AppCompatActivity {
         // setup the AppBar
         appBar = (Toolbar) findViewById(R.id.appbar_main);
         setSupportActionBar(appBar);
+
+        // setup button to open settings
+        settingsBtn = findViewById(R.id.settings_button);
+        settingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // setup button to open Search
+        searchBtn = findViewById(R.id.search_button);
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(intent);
+            }
+        });
 
         // setup Floating Button for writing new mail
         floatingActionButton = findViewById(R.id.write_email);

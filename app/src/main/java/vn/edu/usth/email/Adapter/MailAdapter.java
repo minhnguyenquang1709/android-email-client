@@ -40,18 +40,12 @@ public class MailAdapter extends RecyclerView.Adapter<MailVH> {
         // update the contents of the RecyclerView.ViewHolder.itemView to reflect the item at the given position
         EmailItem emailItem = this.emails.get(position);
         double numb = Math.random();
-        if (numb < 0.33){
-            holder.setProfileImg(R.drawable.profile_picture1);
-        } else if (numb < 0.67){
-            holder.setProfileImg(R.drawable.profile_picture2);
-        } else{
-            holder.setProfileImg(R.drawable.profile_picture3);
-        }
-
+        holder.setProfileImg(emailItem.getProfileImgId());
         holder.setUsername(emailItem.getUsername());
         holder.setSubject(emailItem.getSubject());
         holder.setTimeSent(emailItem.getTimeSent());
         holder.setContent(emailItem.getContent());
+        holder.setEmailAddr(emailItem.getEmailAddr());
         if (emailItem.isStarred()){
             holder.setStar(true);
         }
@@ -67,6 +61,7 @@ public class MailAdapter extends RecyclerView.Adapter<MailVH> {
                 intent.putExtra("subject", emailItem.getSubject());
                 intent.putExtra("content", emailItem.getContent());
                 intent.putExtra("profileImg", holder.getProfileImgId());
+                intent.putExtra("emailAddr", emailItem.getEmailAddr());
 
                 context.startActivity(intent);
             }

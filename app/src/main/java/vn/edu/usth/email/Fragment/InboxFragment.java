@@ -91,9 +91,9 @@ public class InboxFragment extends Fragment {
 
     public void createMails(int num){
         for (int i = 0; i < num; i++){
-            mailList.add(new EmailItem("Sammy Hackett", "International Officer", 120, getString(R.string.content)));
-            mailList.add(new EmailItem("Joshua Durgan", "Islands", 2400, getString(R.string.content)));
-            mailList.add(new EmailItem("Karen Lind", "Electronics International", 2580, getString(R.string.content)));
+            mailList.add(new EmailItem("Sammy Hackett", "sam01@gmail.com", "International Officer", 120, getString(R.string.content), R.drawable.profile_picture1));
+            mailList.add(new EmailItem("Joshua Durgan", "joshua99@gmail.com", "Islands", 2400, getString(R.string.content), R.drawable.profile_picture2));
+            mailList.add(new EmailItem("Karen Lind", "karen123@gmail.com", "Electronics International", 2580, getString(R.string.content), R.drawable.profile_picture3));
         }
     }
 }

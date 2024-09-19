@@ -3,18 +3,20 @@ package vn.edu.usth.email.Model;
 public class EmailItem {
     private String subject;
     private String username;
+    private String emailAddr;
     private int timeSent;
     private String content;
     private boolean starred;
-    private String avatarURI;
+    private int profileImgId;
 
-    public EmailItem(String username, String subject, int timeSent, String content){
+    public EmailItem(String username, String emailAddr, String subject, int timeSent, String content, int profileImgId){
         this.subject = subject;
         this.username = username;
+        this.emailAddr = emailAddr;
         this.timeSent = timeSent;
         this.content = content;
         this.starred = false;
-        this.avatarURI = "";
+        this.profileImgId = profileImgId;
     }
 
     public String getSubject(){
@@ -31,6 +33,22 @@ public class EmailItem {
 
     public String getUsername() {
         return username;
+    }
+
+    public String getEmailAddr() {
+        return emailAddr;
+    }
+
+    public int getProfileImgId() {
+        return profileImgId;
+    }
+
+    public void setProfileImgId(int profileImgId) {
+        this.profileImgId = profileImgId;
+    }
+
+    public void setEmailAddr(String emailAddr) {
+        this.emailAddr = emailAddr;
     }
 
     public boolean isStarred() {

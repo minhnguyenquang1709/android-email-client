@@ -22,6 +22,7 @@ public class MailVH extends RecyclerView.ViewHolder {
     private TextView content;
     private RelativeLayout overlay;
     private ImageView star;
+    private String emailAddr;
 
     private int profileImgId;
 
@@ -70,6 +71,10 @@ public class MailVH extends RecyclerView.ViewHolder {
         return this.profileImgId;
     }
 
+    public String getEmailAddr() {
+        return emailAddr;
+    }
+
     public void setProfileImg(int imgId) {
         this.profileImg.setImageResource(imgId);
         this.profileImgId = imgId;
@@ -103,6 +108,10 @@ public class MailVH extends RecyclerView.ViewHolder {
         else{
             this.star.setVisibility(View.GONE);
         }
+    }
+
+    public void setEmailAddr(String emailAddr) {
+        this.emailAddr = emailAddr;
     }
 
     public void toggleOverlay(){

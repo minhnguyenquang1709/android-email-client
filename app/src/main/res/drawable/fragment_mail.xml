@@ -7,9 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/mail"
-    android:background="#FFF4F4F4"
-    tools:context=".Fragment.MailFragment">
-
+    android:background="#FFF4F4F4">
 
     <RelativeLayout
         android:id="@+id/actionButtons"

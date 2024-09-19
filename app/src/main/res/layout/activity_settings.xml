@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_settings"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/appbar_settings"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/appbar_height"
+        style="@style/appbar">
+
+        <ImageButton
+            android:id="@+id/button_back"
+            android:layout_width="@dimen/size_icon"
+            android:layout_height="@dimen/size_icon"
+            android:src="@drawable/ic_back_arrow"
+            android:background="@color/white"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings"
+            android:fontFamily="@font/sf_pro_text_medium"
+            android:textSize="@dimen/size_text_profile_name"
+            android:layout_gravity="center"
+            android:textColor="@color/red_text"/>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:paddingStart="@dimen/padding_horizontal_toolbar"
+        android:paddingEnd="@dimen/padding_horizontal_toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+<!--
+            <LinearLayout
+                android:id="@+id/appearanceSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#00000000"
+                    android:fontFamily="@font/sf_pro_text_medium"
+                    android:text="@string/label_appearance"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/label_settings_section" />
+
+            </LinearLayout>
+            -->
+
+            <LinearLayout
+                android:id="@+id/notificationSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#00000000"
+                    android:fontFamily="@font/sf_pro_text_medium"
+                    android:text="@string/label_notifications"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/label_settings_section" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/switch_push_notifications"
+                    android:textColor="@color/switch_settings_label"
+                    android:textSize="@dimen/switch_settings_label"
+                    android:thumb="@drawable/custom_thumb"
+                    app:track="@drawable/custom_track"
+                    android:layout_marginVertical="@dimen/switch_margin_vertical">
+                </androidx.appcompat.widget.SwitchCompat>
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/switch_sound"
+                    android:textColor="@color/switch_settings_label"
+                    android:textSize="@dimen/switch_settings_label"
+                    android:thumb="@drawable/custom_thumb"
+                    app:track="@drawable/custom_track"
+                    android:layout_marginVertical="@dimen/switch_margin_vertical">
+                </androidx.appcompat.widget.SwitchCompat>
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/switch_notifications_summary"
+                    android:textColor="@color/switch_settings_label"
+                    android:textSize="@dimen/switch_settings_label"
+                    android:thumb="@drawable/custom_thumb"
+                    app:track="@drawable/custom_track"
+                    android:layout_marginVertical="@dimen/switch_margin_vertical">
+                </androidx.appcompat.widget.SwitchCompat>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/performanceSettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#00000000"
+                    android:fontFamily="@font/sf_pro_text_medium"
+                    android:text="@string/label_performance"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/label_settings_section" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/switch_high_res_img"
+                    android:textColor="@color/switch_settings_label"
+                    android:textSize="@dimen/switch_settings_label"
+                    android:thumb="@drawable/custom_thumb"
+                    app:track="@drawable/custom_track"
+                    android:layout_marginVertical="@dimen/switch_margin_vertical">
+
+                </androidx.appcompat.widget.SwitchCompat>
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/switch_auto_downloads"
+                    android:textColor="@color/switch_settings_label"
+                    android:textSize="@dimen/switch_settings_label"
+                    android:thumb="@drawable/custom_thumb"
+                    app:track="@drawable/custom_track"
+                    android:layout_marginVertical="@dimen/switch_margin_vertical">
+                </androidx.appcompat.widget.SwitchCompat>
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/switch_limit_data"
+                    android:textColor="@color/switch_settings_label"
+                    android:textSize="@dimen/switch_settings_label"
+                    android:thumb="@drawable/custom_thumb"
+                    app:track="@drawable/custom_track"
+                    android:layout_marginVertical="@dimen/switch_margin_vertical">
+
+                </androidx.appcompat.widget.SwitchCompat>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/searchHistorySettings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#00000000"
+                    android:fontFamily="@font/sf_pro_text_medium"
+                    android:text="@string/label_search_history"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/label_settings_section"
+                    android:layout_marginBottom="15dp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="@dimen/btn_clear_search_his_width"
+                    android:layout_height="@dimen/btn_clear_search_his_height"
+                    android:background="@drawable/btn_clear_search_his"
+                    android:drawableStart="@drawable/icon_trashcan"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/label_clear_his"
+                    android:textSize="@dimen/switch_settings_label"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/sf_pro_text_medium"
+                    android:textAllCaps="false"
+                    android:gravity="center"
+                    android:elevation="10dp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+    </ScrollView>
+
+</LinearLayout>

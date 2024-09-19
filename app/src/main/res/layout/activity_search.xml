@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF6F4"
+    tools:context=".Activity.SearchActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/appbar_height"
+        android:padding="10dp"
+        android:background="@color/white"
+        android:elevation="10dp"
+        android:id="@+id/toolbar">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:contentDescription="@string/backbtn"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_back_arrow"
+            android:layout_gravity="center"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/search"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/btn_bg"
+            android:layout_marginStart="10dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/backButton"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:layout_margin="10dp"
+        android:id="@+id/search_tbl"
+        >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/searching"
+            android:padding="15dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/edit_text_coner"
+            android:textSize="16sp"
+            android:elevation="4dp"
+            android:layout_toStartOf="@id/search_btn"
+            android:id="@+id/search_input"
+            />
+
+        <ImageButton
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/search_bar"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/search_btn"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            app:tint="@color/btn_bg"
+            android:padding="4dp"
+            android:layout_margin="10dp"
+            />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search_tbl"
+        android:padding="10dp"
+        android:id="@+id/search_recycle_view"
+
+        />
+
+</RelativeLayout>
