@@ -92,10 +92,25 @@ public class StarredFragment extends Fragment {
     }
 
     public void createMails(int num){
-        for (int i = 0; i < num; i++){
-            mailList.add(new EmailItem("Sammy Hackett", "sam01@gmail.com", "International Officer", 120, getString(R.string.content), R.drawable.profile_picture1));
-            mailList.add(new EmailItem("Joshua Durgan", "joshua99@gmail.com", "Islands", 2400, getString(R.string.content), R.drawable.profile_picture2));
-            mailList.add(new EmailItem("Karen Lind", "karen123@gmail.com", "Electronics International", 2580, getString(R.string.content), R.drawable.profile_picture3));
-        }
+        mailList.add(new EmailItem("Sammy Hackett", "sam01@gmail.com", "International Officer", 120, getString(R.string.content), R.drawable.profile_picture1));
+        mailList.add(new EmailItem("Joshua Durgan", "josh71x@gmail.com", "Islands", 2400, getString(R.string.content), R.drawable.profile_picture2));
+        mailList.add(new EmailItem("Karen Lind", "kl1994@gmail.com", "Electronics International", 2580, getString(R.string.content), R.drawable.profile_picture3));
+        mailList.add(new EmailItem("Elizabeth Leannon DVM", "elizaL@gmail.com", "Markets Australia", 3600, getString(R.string.content), R.drawable.profile_picture4));
+        mailList.add(new EmailItem("Kristopher Cremin", "kris92@gmail.com", "Buckinghamshire", 3751, getString(R.string.content), R.drawable.profile_picture5));
+        mailList.add(new EmailItem("John Pfannerstill", "johny@gmail.com", "Proactive", 7271, getString(R.string.content), R.drawable.profile_picture6));
+
+        mailList.add(new EmailItem("Sammy Hackett", "sam01@gmail.com", "International Officer", 120, getString(R.string.content), R.drawable.profile_picture1));
+        mailList.add(new EmailItem("Joshua Durgan", "josh71x@gmail.com", "Islands", 2400, getString(R.string.content), R.drawable.profile_picture2));
+        mailList.add(new EmailItem("Karen Lind", "kl1994@gmail.com", "Electronics International", 2580, getString(R.string.content), R.drawable.profile_picture3));
+        mailList.add(new EmailItem("Elizabeth Leannon DVM", "elizaL@gmail.com", "Markets Australia", 3600, getString(R.string.content), R.drawable.profile_picture4));
+        mailList.add(new EmailItem("Kristopher Cremin", "kris92@gmail.com", "Buckinghamshire", 3751, getString(R.string.content), R.drawable.profile_picture5));
+        mailList.add(new EmailItem("John Pfannerstill", "johny@gmail.com", "Proactive", 7271, getString(R.string.content), R.drawable.profile_picture6));
+
+        mailList.add(new EmailItem("Sammy Hackett", "sam01@gmail.com", "International Officer", 120, getString(R.string.content), R.drawable.profile_picture1));
+        mailList.add(new EmailItem("Joshua Durgan", "josh71x@gmail.com", "Islands", 2400, getString(R.string.content), R.drawable.profile_picture2));
+        mailList.add(new EmailItem("Karen Lind", "kl1994@gmail.com", "Electronics International", 2580, getString(R.string.content), R.drawable.profile_picture3));
+        mailList.add(new EmailItem("Elizabeth Leannon DVM", "elizaL@gmail.com", "Markets Australia", 3600, getString(R.string.content), R.drawable.profile_picture4));
+        mailList.add(new EmailItem("Kristopher Cremin", "kris92@gmail.com", "Buckinghamshire", 3751, getString(R.string.content), R.drawable.profile_picture5));
+        mailList.add(new EmailItem("John Pfannerstill", "johny@gmail.com", "Proactive", 7271, getString(R.string.content), R.drawable.profile_picture6));
     }
 }
