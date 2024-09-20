@@ -100,8 +100,9 @@
 
     <!-- Settings Activity -->
     <style name="Theme.App" parent="Theme.Material3.DayNight.NoActionBar">
-        ...
         <item name="materialSwitchStyle">@style/Widget.App.Switch</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Widget.App.Switch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
@@ -110,6 +111,6 @@
 
     <style name="ThemeOverlay.App.Switch" parent="">
         <item name="colorPrimary">@color/red_settings</item>
-        <item name="colorSurfaceVariant">@color/light_gray</item>
+        <item name="colorSurfaceVariant">@color/white</item>
     </style>
 </resources>

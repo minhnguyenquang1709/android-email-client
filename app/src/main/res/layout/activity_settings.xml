@@ -141,6 +141,7 @@
                     android:layout_marginBottom="15dp"/>
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_clear_history"
                     android:layout_width="@dimen/btn_clear_search_his_width"
                     android:layout_height="@dimen/btn_clear_search_his_height"
                     android:background="@drawable/btn_clear_search_his"

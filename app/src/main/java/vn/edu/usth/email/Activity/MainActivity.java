@@ -52,6 +52,7 @@ public class    MainActivity extends AppCompatActivity {
         new TabLayoutMediator(tabLayout, mainViewPager, new TabLayoutMediator.TabConfigurationStrategy() {
             @Override
             public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                // setup icon for each tab
                 switch (position){
                     case 0:
                         tab.setIcon(R.drawable.folder_icon);
@@ -66,8 +67,7 @@ public class    MainActivity extends AppCompatActivity {
                 }
             }
         }).attach();
-
-        tabLayout.setTabIconTintResource(R.color.tab_icon_color);
+        tabLayout.setTabIconTintResource(R.color.tab_icon_color); // setup color when selected and not selected for icon
 
         // setup the AppBar
         appBar = (Toolbar) findViewById(R.id.appbar_main);
