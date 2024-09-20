@@ -21,4 +21,6 @@
     <color name="tab_icon_default">#FF611717</color>
     <color name="tab_icon_active">#FFE13535</color>
 
+    <color name="bg_primary">#FFFFF6F4</color>
+
 </resources>

@@ -99,9 +99,17 @@
     </style>
 
     <!-- Settings Activity -->
+    <style name="Theme.App" parent="Theme.Material3.DayNight.NoActionBar">
+        ...
+        <item name="materialSwitchStyle">@style/Widget.App.Switch</item>
+    </style>
 
-    <style name="switch_settings" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+    <style name="Widget.App.Switch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Switch</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Switch" parent="">
         <item name="colorPrimary">@color/red_settings</item>
-        <item name="colorPrimaryVariant">@color/red_settings</item>
+        <item name="colorSurfaceVariant">@color/light_gray</item>
     </style>
 </resources>
