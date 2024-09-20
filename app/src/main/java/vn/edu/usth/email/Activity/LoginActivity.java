@@ -29,8 +29,6 @@ public class LoginActivity extends AppCompatActivity {
         emailInputField = findViewById(R.id.emailSender);
         passwordInputField = findViewById(R.id.password);
 
-
-
         Button btnLogin = findViewById(R.id.btn_login);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
