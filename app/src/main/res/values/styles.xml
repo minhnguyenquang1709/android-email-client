@@ -97,4 +97,11 @@
         <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
         <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
     </style>
+
+    <!-- Settings Activity -->
+
+    <style name="switch_settings" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+        <item name="colorPrimary">@color/red_settings</item>
+        <item name="colorPrimaryVariant">@color/red_settings</item>
+    </style>
 </resources>

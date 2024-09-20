@@ -84,7 +84,7 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/label_settings_section" />
 
-                <androidx.appcompat.widget.SwitchCompat
+                <com.google.android.material.materialswitch.MaterialSwitch
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/switch_high_res_img"
@@ -92,9 +92,10 @@
                     android:textSize="@dimen/switch_settings_label"
                     android:thumb="@drawable/custom_thumb"
                     app:track="@drawable/custom_track"
-                    android:layout_marginVertical="@dimen/switch_margin_vertical">
+                    android:layout_marginVertical="@dimen/switch_margin_vertical"
+                    style="@style/switch_settings">
 
-                </androidx.appcompat.widget.SwitchCompat>
+                </com.google.android.material.materialswitch.MaterialSwitch>
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:layout_width="match_parent"
