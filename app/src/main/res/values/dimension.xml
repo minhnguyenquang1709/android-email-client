@@ -43,4 +43,8 @@
     <dimen name="buttonMarginStart">8dp</dimen>
     <dimen name="ViewHeight">64dp</dimen>
     <dimen name="columnCount">4</dimen>
+
+    <!-- Auth Activity -->
+    <dimen name="auth_icon_mail_height">175dp</dimen>
+    <dimen name="auth_message_padding">16dp</dimen>
 </resources>
