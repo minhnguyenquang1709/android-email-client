@@ -1,5 +1,6 @@
 package vn.edu.usth.email.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.credentials.Credential;
 import androidx.credentials.CredentialManager;
 
@@ -25,6 +26,8 @@ import androidx.credentials.exceptions.GetCredentialException;
 
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption;
 import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption;
+import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential;
+import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException;
 
 import java.util.UUID;
 
@@ -60,6 +63,7 @@ public class AuthActivity extends AppCompatActivity {
             .build();
 
         // this must be the only option in GetCredentialRequest
+        // retrieve user's Google ID Token
         GetSignInWithGoogleOption getSignInWithGoogleOption = new GetSignInWithGoogleOption.Builder(getString(R.string.client_id))
             .setNonce(nonce)
             .build();
@@ -115,7 +119,17 @@ public class AuthActivity extends AppCompatActivity {
         } else {
             // Catch any unrecognized credential type here.
             Log.i("AuthActivity", "Unexpected type of credential: " + result.toString());
-            Toast.makeText(this, "Unexpected type of credential", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Unexpected type of credential", Toast.LENGTH_SHORT).show();
+        }
+
+//        Log.i("AuthActivity", "credential: "+credential.getType());
+        if(credential.getType().equals(GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL)){
+            // convert the credential object into a GoogleIdTokenCredential
+            GoogleIdTokenCredential idTokenCredential = GoogleIdTokenCredential.createFrom(credential.getData());
+            // extract ti GoogleIdTokenCredential ID and validate it
+            Log.i("AuthActivity", "id: " + idTokenCredential.getId()); // the email
+            Log.i("AuthActivity", "idToken: " + idTokenCredential.getIdToken()); // JWT token
+            Log.i("AuthActivity", "credential: " + credential); // JWT token
         }
     }
 
