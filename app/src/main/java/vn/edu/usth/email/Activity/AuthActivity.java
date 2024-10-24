@@ -23,7 +23,10 @@ import androidx.credentials.PasswordCredential;
 import androidx.credentials.PublicKeyCredential;
 import androidx.credentials.exceptions.GetCredentialException;
 
+import com.google.android.libraries.identity.googleid.GetGoogleIdOption;
 import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption;
+
+import java.util.UUID;
 
 import vn.edu.usth.email.R;
 
@@ -47,11 +50,23 @@ public class AuthActivity extends AppCompatActivity {
         // Retrieves the user's saved password for your app from their
         // password provider.
         GetPasswordOption getPasswordOption = new GetPasswordOption();
-        GetSignInWithGoogleOption
+
+        String nonce = UUID.randomUUID().toString();
+        GetGoogleIdOption getGoogleIdOption = new GetGoogleIdOption.Builder()
+            .setFilterByAuthorizedAccounts(true)
+            .setServerClientId(getString(R.string.client_id))
+            .setAutoSelectEnabled(true)
+            .setNonce(nonce)
+            .build();
+
+        // this must be the only option in GetCredentialRequest
+        GetSignInWithGoogleOption getSignInWithGoogleOption = new GetSignInWithGoogleOption.Builder(getString(R.string.client_id))
+            .setNonce(nonce)
+            .build();
 
         GetCredentialRequest getCredRequest = new GetCredentialRequest.Builder()
-                .addCredentialOption(getPasswordOption)
-                .build();
+            .addCredentialOption(getSignInWithGoogleOption)
+            .build();
 
         // click on the view -> start authentication
         boxAddAddress = findViewById(R.id.box_add_address);
@@ -60,26 +75,25 @@ public class AuthActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(AuthActivity.this, "start adding an email address", Toast.LENGTH_SHORT).show();
 
+                // start authentication
                 credentialManager.getCredentialAsync(
-                        // Use activity based context to avoid undefined
-                        // system UI launching behavior
-                        AuthActivity.this,
-                        getCredRequest,
-                        new CancellationSignal(),
-                        Runnable::run,
-                        new CredentialManagerCallback<GetCredentialResponse, GetCredentialException>(){
-                            @Override
-
-                            public void onResult(GetCredentialResponse result) {
-                                handleSignIn(result);
-                            }
-
-
-                            @Override
-                            public void onError(GetCredentialException e) {
-                                handleFailure(e);
-                            }
+                    // Use activity based context to avoid undefined
+                    // system UI launching behavior
+                    AuthActivity.this,
+                    getCredRequest,
+                    new CancellationSignal(),
+                    Runnable::run,
+                    new CredentialManagerCallback<GetCredentialResponse, GetCredentialException>(){
+                        @Override
+                        public void onResult(GetCredentialResponse result) {
+                            handleSignIn(result);
                         }
+
+                        @Override
+                        public void onError(GetCredentialException e) {
+                            handleFailure(e);
+                        }
+                    }
                 );
             }
         });
@@ -100,16 +114,15 @@ public class AuthActivity extends AppCompatActivity {
             // Use id and password to send to your server to validate and authenticate
         } else {
             // Catch any unrecognized credential type here.
-            Log.e("AuthActivity", "Unexpected type of credential");
+            Log.i("AuthActivity", "Unexpected type of credential: " + result.toString());
             Toast.makeText(this, "Unexpected type of credential", Toast.LENGTH_SHORT).show();
         }
     }
 
     // Handle errors during credential retrieval
-
     private void handleFailure(GetCredentialException e) {
         //Toast.makeText(this, "Credential retrieval failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
-        Log.i("AuthActivtiy", "Credential retrieval failed: " + e.getMessage());
-        // Implement fallback logic, such as showing a sign-in form
+        Log.e("AuthActivtiy Error", "Credential retrieval failed: " + e);
+        // Implement fallback logic: show a sign-in form
     }
 }
