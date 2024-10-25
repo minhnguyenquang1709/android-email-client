@@ -102,4 +102,5 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
     <!-- Write Activity -->
     <string name="write">Write</string>
+    <string name="title_activity_genaral_setting">GenaralSettingActivity</string>
 </resources>

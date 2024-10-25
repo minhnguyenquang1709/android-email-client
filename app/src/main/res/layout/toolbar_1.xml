@@ -27,7 +27,7 @@
             android:fontFamily="@font/sf_pro_text_medium"
             android:textSize="@dimen/size_text_profile_name"
             android:layout_gravity="center"
-            android:textColor="@color/red_super_dark"/>
+            android:textColor="@color/black"/>
 
     </androidx.appcompat.widget.Toolbar>
 
