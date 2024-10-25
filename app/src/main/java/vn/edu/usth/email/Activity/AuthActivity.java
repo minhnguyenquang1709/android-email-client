@@ -24,11 +24,16 @@ import androidx.credentials.PasswordCredential;
 import androidx.credentials.PublicKeyCredential;
 import androidx.credentials.exceptions.GetCredentialException;
 
+import com.google.android.gms.auth.api.identity.AuthorizationRequest;
+import com.google.android.gms.common.Scopes;
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption;
 import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption;
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential;
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException;
+import com.google.api.services.gmail.GmailScopes;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 import vn.edu.usth.email.R;
@@ -71,6 +76,12 @@ public class AuthActivity extends AppCompatActivity {
         GetCredentialRequest getCredRequest = new GetCredentialRequest.Builder()
             .addCredentialOption(getSignInWithGoogleOption)
             .build();
+
+        // authorization
+        AuthorizationRequest authorizationRequest = new AuthorizationRequest.Builder()
+                .requestOfflineAccess(getString(R.string.client_id), true)
+                .build();
+
 
         // click on the view -> start authentication
         boxAddAddress = findViewById(R.id.box_add_address);
@@ -138,5 +149,10 @@ public class AuthActivity extends AppCompatActivity {
         //Toast.makeText(this, "Credential retrieval failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
         Log.e("AuthActivtiy Error", "Credential retrieval failed: " + e);
         // Implement fallback logic: show a sign-in form
+    }
+
+    // request email data
+    private void requestEmailData (){
+//        List<Scopes> requestedScopes = Arrays.asList(GmailScopes.GMAIL_READONLY);
     }
 }
