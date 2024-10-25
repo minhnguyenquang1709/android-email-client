@@ -1,127 +1,84 @@
 package vn.edu.usth.email.Activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageButton;
-
-import androidx.activity.EdgeToEdge;
+import android.provider.Settings;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.viewpager2.widget.ViewPager2;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.tabs.TabLayoutMediator;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
+import com.google.api.services.gmail.GmailScopes;
 
-import vn.edu.usth.email.Adapter.MainViewPagerAdapter;
-import vn.edu.usth.email.R;
+public class MainActivity extends AppCompatActivity {
 
-public class    MainActivity extends AppCompatActivity {
-    private Toolbar appBar;
-    private TabLayout tabLayout;
-    private ViewPager2 mainViewPager;
-    private MainViewPagerAdapter pagerAdapter;
-    private ImageButton searchBtn;
-    private ImageButton settingsBtn;
-    FloatingActionButton floatingActionButton;
+    private static final int PERMISSION_REQUEST_CODE = 1;
+    private GoogleSignInClient mGoogleSignInClient;
+    private static final int RC_SIGN_IN = 9001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
 
-        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
-        mainViewPager = findViewById(R.id.main_view_pager);
-        pagerAdapter = new MainViewPagerAdapter(this);
-        mainViewPager.setOffscreenPageLimit(3);
-        mainViewPager.setAdapter(pagerAdapter);
+        // Configure Google Sign-In
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .requestScopes(new com.google.android.gms.common.api.Scope(GmailScopes.GMAIL_READONLY))  // Request Gmail API scope
+                .build();
 
-        // use TabLayoutMediator to link TabLayout with ViewPager2
-        new TabLayoutMediator(tabLayout, mainViewPager, new TabLayoutMediator.TabConfigurationStrategy() {
-            @Override
-            public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                // setup icon for each tab
-                switch (position){
-                    case 0:
-                        tab.setIcon(R.drawable.folder_icon);
-                        break;
-                    case 1:
-                        tab.setIcon(R.drawable.inbox_icon);
-                        break;
-                    case 2:
-                        tab.setIcon(R.drawable.star_icon);
-                        break;
-                    default: tab.setText("Tab");
-                }
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        checkAndRequestPermissions();
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Write writeFragment = new Write();
+        fragmentTransaction.replace(R.id.fragment_container, writeFragment);
+        fragmentTransaction.commit();
+    }
+
+    private void checkAndRequestPermissions() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+        }
+    }
+
+    private void showPermissionsDeniedDialog() {
+        // Show a dialog to guide the user to app settings
+        new android.app.AlertDialog.Builder(this)
+                .setTitle("Permission Denied")
+                .setMessage("Storage permission is needed to access files. Please enable it in Settings.")
+                .setPositiveButton("Go to Settings", (dialog, which) -> {
+                    Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", getPackageName(), null));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                })
+                .setNegativeButton("Cancel", (dialog, which) -> finish())
+                .show();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission granted
+            } else {
+                // Permission denied, close app or show dialog
+                showPermissionsDeniedDialog();
             }
-        }).attach();
-        tabLayout.setTabIconTintResource(R.color.tab_icon_color); // setup color when selected and not selected for icon
-
-        // setup the AppBar
-        appBar = (Toolbar) findViewById(R.id.appbar_main);
-        setSupportActionBar(appBar);
-
-        // setup button to open settings
-        settingsBtn = findViewById(R.id.settings_button);
-        settingsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        // setup button to open Search
-        searchBtn = findViewById(R.id.search_button);
-        searchBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        // setup Floating Button for writing new mail
-        floatingActionButton = findViewById(R.id.write_email);
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i("Floating Action Button", "Write new mail");
-                Intent intent = new Intent(getApplicationContext(), WriteActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        // toggle FAB visibility for each page selected
-        mainViewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position){
-                switch (position){
-                    case 0:
-                        floatingActionButton.setVisibility(View.GONE);
-                        break;
-                    case 1:
-                        floatingActionButton.setVisibility(View.VISIBLE);
-                        break;
-                    case 2:
-                        floatingActionButton.setVisibility(View.VISIBLE);
-                        break;
-                    default:
-                        floatingActionButton.setVisibility(View.VISIBLE);
-                }
-            }
-        });
+        }
     }
 }

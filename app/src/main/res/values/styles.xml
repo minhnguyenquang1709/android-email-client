@@ -113,4 +113,25 @@
         <item name="colorPrimary">@color/red_settings</item>
         <item name="colorSurfaceVariant">@color/white</item>
     </style>
+
+
+    <style name="Theme.App" parent="Theme.Material3.*">
+        ...
+        <item name="materialSwitchStyle">@style/Widget.App.Switch</item>
+    </style>
+
+    <style name="Widget.App.Switch" parent="Widget.Material3.CompoundButton.MaterialSwitch">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Switch</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Switch" parent="">
+        <item name="colorPrimary">@color/red</item>
+        <item name="colorSurfaceVariant">@color/black</item>
+    </style>
+    <!-- Compose Activity -->
+    <style name="title_bar">
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:elevation">4dp</item>
+    </style>
 </resources>
