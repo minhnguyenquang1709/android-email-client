@@ -28,6 +28,7 @@
 
     <!-- ReadMailActivity-->
     <dimen name="marginStart">12dp</dimen>
+
     <dimen name="minHeight">550dp</dimen>
     <dimen name="minHeightTool">60dp</dimen>
     <dimen name="padding">24dp</dimen>
@@ -43,4 +44,13 @@
     <dimen name="buttonMarginStart">8dp</dimen>
     <dimen name="ViewHeight">64dp</dimen>
     <dimen name="columnCount">4</dimen>
+    <!-- WriteActivity-->
+    <dimen name="marginTop">8dp</dimen>
+    <dimen name="elevation">4dp</dimen>
+    <dimen name="layoutWidth">29dp</dimen>
+    <dimen name="layoutHeight">29dp</dimen>
+    <dimen name="layoutMarginStart">16dp</dimen>
+    <dimen name="layoutMarginTop">3dp</dimen>
+    <dimen name="textSizeEmail">16sp</dimen>
+    <dimen name="yourLayoutMarginStart">8dp</dimen>
 </resources>

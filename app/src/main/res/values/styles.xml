@@ -129,9 +129,5 @@
         <item name="colorSurfaceVariant">@color/black</item>
     </style>
     <!-- Compose Activity -->
-    <style name="title_bar">
-        <item name="android:layout_marginTop">8dp</item>
-        <item name="android:background">@color/white</item>
-        <item name="android:elevation">4dp</item>
-    </style>
+
 </resources>
