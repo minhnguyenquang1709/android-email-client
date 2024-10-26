@@ -1,5 +1,7 @@
 package vn.edu.usth.email.Activity;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.credentials.Credential;
 import androidx.credentials.CredentialManager;
 
@@ -10,6 +12,7 @@ import android.os.CancellationSignal;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -31,10 +34,24 @@ import com.google.android.gms.common.api.Scope;
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption;
 import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption;
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential;
+import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
+import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.client.json.JsonFactory;
+import com.google.api.client.json.gson.GsonFactory;
+import com.google.api.services.gmail.Gmail;
+import com.google.api.services.gmail.GmailRequest;
 import com.google.api.services.gmail.GmailScopes;
 
+import java.io.IOException;
+import java.security.GeneralSecurityException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.UUID;
 
 import vn.edu.usth.email.R;
@@ -43,6 +60,12 @@ public class AuthActivity extends AppCompatActivity {
     private LinearLayout boxAddAddress;
 
     private static final int REQUEST_AUTHORIZE = 1001;
+
+    private ArrayList<GoogleIdTokenCredential> credentialList;
+
+    private Gmail service;
+    private JsonFactory JSON_FACTORY;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +77,8 @@ public class AuthActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        credentialList = new ArrayList<>();
 
         // initialize a CredentialManager object
         CredentialManager credentialManager = CredentialManager.create(this);
@@ -80,10 +105,15 @@ public class AuthActivity extends AppCompatActivity {
             .addCredentialOption(getSignInWithGoogleOption)
             .build();
 
-        // authorization
-//        AuthorizationRequest authorizationRequest = new AuthorizationRequest.Builder()
-//                .requestOfflineAccess(getString(R.string.client_id), true)
-//                .build();
+        // build a new authorized API client service
+        try {
+            initializeGmailApiService();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (GeneralSecurityException e) {
+            throw new RuntimeException(e);
+        }
+
 
         // click on the view -> start authentication
         boxAddAddress = findViewById(R.id.box_add_address);
@@ -116,6 +146,12 @@ public class AuthActivity extends AppCompatActivity {
         });
     }
 
+//    private void initializeGmailApiService() throws IOException, GeneralSecurityException{
+//        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+//        JSON_FACTORY = GsonFactory.getDefaultInstance();
+//        service = new Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, )
+//    }
+
     // Start the Google Sign-In intent
     private void handleSignIn(GetCredentialResponse result) {
         // Handle the successfully returned credential.
@@ -132,20 +168,37 @@ public class AuthActivity extends AppCompatActivity {
         } else {
             // Catch any unrecognized credential type here.
             Log.i("AuthActivity", "Unexpected type of credential: " + result.toString());
-//            Toast.makeText(this, "Unexpected type of credential", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Unexpected type of credential", Toast.LENGTH_SHORT).show(); // must call Looper.prepare()
         }
 
 //        Log.i("AuthActivity", "credential: "+credential.getType());
         if(credential.getType().equals(GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL)){
             // convert the credential object into a GoogleIdTokenCredential
             GoogleIdTokenCredential idTokenCredential = GoogleIdTokenCredential.createFrom(credential.getData());
-            // extract ti GoogleIdTokenCredential ID and validate it
+            // extract GoogleIdTokenCredential
             Log.i("AuthActivity", "id: " + idTokenCredential.getId()); // the email
             Log.i("AuthActivity", "idToken: " + idTokenCredential.getIdToken()); // JWT token
-            Log.i("AuthActivity", "credential: " + credential); // JWT token
 
-            requestEmailData();
+            credentialList.add(idTokenCredential);
+
+            runOnUiThread(()->{
+                updateEmailList();
+            });
+
+            authorize();
         }
+    }
+
+    // update UI
+    private void updateEmailList(){
+        LinearLayout container = findViewById(R.id.email_list);
+        credentialList.forEach(credential->{
+            TextView tv = new TextView(AuthActivity.this);
+            tv.setWidth(container.getWidth());
+            tv.setText(credential.getId());
+            tv.setTextColor(getColor(R.color.blue_text));
+            container.addView(tv);
+        });
     }
 
     // Handle errors during credential retrieval
@@ -155,13 +208,15 @@ public class AuthActivity extends AppCompatActivity {
         // Implement fallback logic: show a sign-in form
     }
 
-    // request email data
-    private void requestEmailData (){
+    // authorize google user
+    private void authorize(){
         List<Scope> requestedScopes = Arrays.asList(
                 new Scope(GmailScopes.GMAIL_READONLY),
                 new Scope(GmailScopes.GMAIL_LABELS),
                 new Scope(GmailScopes.GMAIL_COMPOSE) );
-        AuthorizationRequest authorizationRequest = AuthorizationRequest.builder().setRequestedScopes(requestedScopes).build();
+        AuthorizationRequest authorizationRequest = AuthorizationRequest.builder()
+                .setRequestedScopes(requestedScopes)
+                .build();
 
         Identity.getAuthorizationClient(this)
                 .authorize(authorizationRequest)
@@ -180,10 +235,17 @@ public class AuthActivity extends AppCompatActivity {
                                 // access already granted, continue with user action
                                 // logic to get data
                                 Log.i("AuthActivity", "Authorization successful");
-                                // Log.i("AuthActivity", "accessToken: " + authorizationResult.getAccessToken());
+                                Log.i("AuthActivity", "accessToken: " + authorizationResult.getAccessToken());
                             }
                         }
                 )
                 .addOnFailureListener(e -> Log.e("AuthActivity", "Failed to authorize", e));
+    }
+
+    // request email data
+    private void createGmailService(String accessToken){
+        // create
+        GoogleCredential credential;
+        Gmail service = new Gmail.Builder()
     }
 }

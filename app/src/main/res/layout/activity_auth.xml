@@ -24,6 +24,13 @@
             android:padding="@dimen/auth_message_padding"/>
 
         <LinearLayout
+            android:id="@+id/email_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/auth_message_padding"/>
+
+        <LinearLayout
             android:id="@+id/box_add_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
