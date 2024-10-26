@@ -69,7 +69,7 @@
         android:layout_below="@id/emailSubject"
         android:layout_toStartOf="@id/starIcon"
         android:layout_marginTop="2dp"
-        android:text="Content"
+        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacinia rhoncus felis, eu lobortis nisi hendrerit vel. Pellentesque eget cursus urna, eu ullamcorper est. Sed erat ante, posuere consequat magna sed, sagittis semper ligula. Vivamus nisl ipsum, ultrices a velit a, hendrerit pretium justo."
         android:textColor="#666666"
         android:textSize="14sp"
         android:maxLines="1"
@@ -82,7 +82,7 @@
         android:layout_height="24dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="3dp"
         android:src="@drawable/star2_icon__"
         app:tint="#888888" />
 
