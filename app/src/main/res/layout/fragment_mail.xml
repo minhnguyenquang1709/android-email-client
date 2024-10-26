@@ -78,8 +78,8 @@
     <!-- Star icon -->
     <ImageView
         android:id="@+id/starIcon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="3dp"
