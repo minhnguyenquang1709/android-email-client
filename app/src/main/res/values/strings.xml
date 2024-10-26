@@ -102,4 +102,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
     <!-- Write Activity -->
     <string name="write">Write</string>
+    <string name="search_email">Search in mail</string>
+    <string name="profile">Profile</string>
 </resources>

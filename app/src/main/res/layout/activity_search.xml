@@ -1,57 +1,71 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FFF6F4"
-    tools:context=".Activity.SearchActivity">
+    android:layout_height="match_parent">
 
-    <include android:id="@+id/toolbar" layout="@layout/toolbar_1" />
-
-    <RelativeLayout
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:layout_below="@id/toolbar"
+        android:background="@drawable/rounded_toolbar_background"
+        android:padding="8dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginRight="14dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="11dp"
+        android:elevation="10dp"
+        android:focusableInTouchMode="true"
+        >
 
-        android:id="@+id/search_tbl">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/searching"
-            android:padding="15dp"
-            android:layout_margin="20dp"
-            android:background="@drawable/edit_text_coner"
-            android:textSize="16sp"
-            android:elevation="4dp"
-            android:layout_toStartOf="@id/search_btn"
-            android:id="@+id/search_input"
-            />
-
+        <!-- Hamburger icon -->
         <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/search_bar"
-            android:layout_alignParentEnd="true"
-            android:id="@+id/search_btn"
-            android:layout_centerVertical="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            app:tint="@color/red_super_dark"
-            android:padding="4dp"
-            android:layout_margin="10dp"
+            android:id="@+id/icon_menu"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:paddingEnd="8dp"
+
+            android:src="@drawable/ic_menu"
+            android:background="@color/toolbar"/>
+
+        <!-- Search EditText -->
+        <EditText
+            android:id="@+id/editTextSearch"
+            android:layout_width="285dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawablePadding="10dp"
+            android:hint="@string/search_email"
+            android:inputType="text"
+            android:padding="10dp"
+            android:textColorHint="@color/grey"
+            android:imeOptions="actionDone"
             />
 
-    </RelativeLayout>
+        <!-- Avatar Icon -->
+        <ImageButton
+            android:id="@+id/avatar_icon"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/circular_background"
+            android:contentDescription="@string/profile"
+            android:scaleType="centerCrop"
+            android:src="@drawable/profile_picture0"
+            android:clipToOutline="true" />
+
+    </androidx.appcompat.widget.Toolbar>
+
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/search_tbl"
-        android:padding="10dp"
-        android:background="#FFF6F4"
-        android:id="@+id/search_recycle_view"
-        />
-
-</RelativeLayout>
+        android:layout_height="match_parent"
+        android:layout_marginTop="90dp"
+        android:padding="16dp"
+        android:scrollbars="vertical" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -17,10 +17,10 @@
     <color name="switch_settings_label">#99000000</color>
     <color name="green">#FF2CD747</color>
     <color name="red_icon_bg">#FFFFDDDD</color>
-
+    <color name="grey">#808080</color>
     <color name="tab_icon_default">#FF611717</color>
     <color name="tab_icon_active">#FFE13535</color>
-
+    <color name="toolbar">#EEF2FB</color>
     <color name="bg_primary">#FFFFF6F4</color>
 
 </resources>
