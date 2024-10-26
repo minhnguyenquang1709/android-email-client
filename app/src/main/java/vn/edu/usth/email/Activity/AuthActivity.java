@@ -1,9 +1,10 @@
 package vn.edu.usth.email.Activity;
 
-import androidx.annotation.NonNull;
 import androidx.credentials.Credential;
 import androidx.credentials.CredentialManager;
 
+import android.app.PendingIntent;
+import android.content.IntentSender;
 import android.os.Bundle;
 import android.os.CancellationSignal;
 import android.util.Log;
@@ -25,11 +26,11 @@ import androidx.credentials.PublicKeyCredential;
 import androidx.credentials.exceptions.GetCredentialException;
 
 import com.google.android.gms.auth.api.identity.AuthorizationRequest;
-import com.google.android.gms.common.Scopes;
+import com.google.android.gms.auth.api.identity.Identity;
+import com.google.android.gms.common.api.Scope;
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption;
 import com.google.android.libraries.identity.googleid.GetSignInWithGoogleOption;
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential;
-import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException;
 import com.google.api.services.gmail.GmailScopes;
 
 import java.util.Arrays;
@@ -40,6 +41,8 @@ import vn.edu.usth.email.R;
 
 public class AuthActivity extends AppCompatActivity {
     private LinearLayout boxAddAddress;
+
+    private static final int REQUEST_AUTHORIZE = 1001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,10 +81,9 @@ public class AuthActivity extends AppCompatActivity {
             .build();
 
         // authorization
-        AuthorizationRequest authorizationRequest = new AuthorizationRequest.Builder()
-                .requestOfflineAccess(getString(R.string.client_id), true)
-                .build();
-
+//        AuthorizationRequest authorizationRequest = new AuthorizationRequest.Builder()
+//                .requestOfflineAccess(getString(R.string.client_id), true)
+//                .build();
 
         // click on the view -> start authentication
         boxAddAddress = findViewById(R.id.box_add_address);
@@ -141,6 +143,8 @@ public class AuthActivity extends AppCompatActivity {
             Log.i("AuthActivity", "id: " + idTokenCredential.getId()); // the email
             Log.i("AuthActivity", "idToken: " + idTokenCredential.getIdToken()); // JWT token
             Log.i("AuthActivity", "credential: " + credential); // JWT token
+
+            requestEmailData();
         }
     }
 
@@ -153,6 +157,33 @@ public class AuthActivity extends AppCompatActivity {
 
     // request email data
     private void requestEmailData (){
-//        List<Scopes> requestedScopes = Arrays.asList(GmailScopes.GMAIL_READONLY);
+        List<Scope> requestedScopes = Arrays.asList(
+                new Scope(GmailScopes.GMAIL_READONLY),
+                new Scope(GmailScopes.GMAIL_LABELS),
+                new Scope(GmailScopes.GMAIL_COMPOSE) );
+        AuthorizationRequest authorizationRequest = AuthorizationRequest.builder().setRequestedScopes(requestedScopes).build();
+
+        Identity.getAuthorizationClient(this)
+                .authorize(authorizationRequest)
+                .addOnSuccessListener(
+                        authorizationResult -> {
+                            if(authorizationResult.hasResolution()){
+                                // access needs to be granted by the user
+                                PendingIntent pendingIntent = authorizationResult.getPendingIntent();
+                                try {
+                                    startIntentSenderForResult(pendingIntent.getIntentSender(),
+                                            REQUEST_AUTHORIZE, null, 0, 0, 0, null);
+                                }catch (IntentSender.SendIntentException e){
+                                    Log.e("AuthActivity Error", "Couldn't start Authorization UI: " + e.getLocalizedMessage());
+                                }
+                            }else{
+                                // access already granted, continue with user action
+                                // logic to get data
+                                Log.i("AuthActivity", "Authorization successful");
+                                // Log.i("AuthActivity", "accessToken: " + authorizationResult.getAccessToken());
+                            }
+                        }
+                )
+                .addOnFailureListener(e -> Log.e("AuthActivity", "Failed to authorize", e));
     }
 }
