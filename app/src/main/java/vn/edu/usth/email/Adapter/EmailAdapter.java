@@ -34,7 +34,7 @@ public class EmailAdapter extends RecyclerView.Adapter<EmailAdapter.EmailViewHol
     public void onBindViewHolder(@NonNull EmailViewHolder holder, int position) {
         Email email = emailList.get(position);
         holder.icon.setText(email.getIcon());
-        holder.title.setText(email.getTitle());
+        holder.senderName.setText(email.getSenderName()); // Changed from title to senderName
         holder.snippet.setText(email.getSnippet());
         holder.time.setText(email.getTime());
     }
@@ -45,13 +45,13 @@ public class EmailAdapter extends RecyclerView.Adapter<EmailAdapter.EmailViewHol
     }
 
     public static class EmailViewHolder extends RecyclerView.ViewHolder {
-        TextView icon, title, snippet, time;
+        TextView icon, senderName, snippet, time; // Changed from title to senderName
         ImageView starIcon;
 
         public EmailViewHolder(@NonNull View itemView) {
             super(itemView);
             icon = itemView.findViewById(R.id.icon);
-            title = itemView.findViewById(R.id.title);
+            senderName = itemView.findViewById(R.id.title); // Changed from title to senderName
             snippet = itemView.findViewById(R.id.snippet);
             time = itemView.findViewById(R.id.time);
             starIcon = itemView.findViewById(R.id.star_icon);

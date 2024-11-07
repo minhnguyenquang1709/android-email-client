@@ -16,14 +16,14 @@
         android:textSize="18sp"
         android:layout_alignParentStart="true" />
 
-    <!-- Email title -->
+    <!-- Sender name (was previously "title") -->
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@id/icon"
         android:layout_marginStart="16dp"
-        android:text="Welcome to Gmail"
+        android:text="Sender Name"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -56,5 +56,5 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@id/time"
         android:layout_marginTop="8dp"
-        />
+         />
 </RelativeLayout>

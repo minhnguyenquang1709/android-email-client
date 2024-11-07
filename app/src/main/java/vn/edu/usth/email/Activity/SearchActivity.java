@@ -17,7 +17,7 @@ import com.google.api.services.gmail.model.ListMessagesResponse;
 import com.google.api.services.gmail.model.Message;
 import com.google.api.services.gmail.model.MessagePart;
 import com.google.api.services.gmail.model.MessagePartBody;
-
+import com.google.api.services.gmail.model.MessagePartHeader;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.text.SimpleDateFormat;
@@ -38,7 +38,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+import com.google.api.services.gmail.model.MessagePartHeader;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
@@ -106,7 +106,6 @@ public class SearchActivity extends AppCompatActivity {
         }).setApplicationName("YourAppName").build();
     }
     private void fetchEmailsMessages(String userId, Gmail service, String searchTerm) {
-        Log.i("SearchActivity", "Starting email search for query: " + searchTerm);
         new Thread(() -> {
             List<Email> emailList = new ArrayList<>();
             try {
@@ -117,19 +116,29 @@ public class SearchActivity extends AppCompatActivity {
                     for (Message message : messages) {
                         Message fullMessage = service.users().messages().get(userId, message.getId()).execute();
 
-                        // Extract data for display
-                        String title = fullMessage.getSnippet(); // Just an example, adjust as needed
+                        // Get the snippet
                         String snippet = fullMessage.getSnippet();
 
-                        // Extract sender’s initial or any identifier for icon
-                        String iconText = title != null && !title.isEmpty() ? title.substring(0, 1).toUpperCase() : "B";
+                        // Get sender's name or email from headers
+                        String senderName = "Unknown Sender"; // Default value if not found
+                        if (fullMessage.getPayload() != null && fullMessage.getPayload().getHeaders() != null) {
+                            for (MessagePartHeader header : fullMessage.getPayload().getHeaders()) {
+                                if ("From".equalsIgnoreCase(header.getName())) {
+                                    senderName = header.getValue();
+                                    break;
+                                }
+                            }
+                        }
 
-                        // Format the internal date
+                        // Get sender's initial for the icon text
+                        String iconText = senderName.isEmpty() ? "?" : senderName.substring(0, 1).toUpperCase();
+
+                        // Format the internal date as time
                         long internalDate = fullMessage.getInternalDate();
                         String time = new SimpleDateFormat("h:mm a").format(new Date(internalDate));
 
-                        // Create email item and add to list
-                        Email email = new Email(iconText, title, snippet, time);
+                        // Create and add an Email object to the list
+                        Email email = new Email(iconText, senderName, snippet, time);
                         emailList.add(email);
                     }
 
@@ -146,4 +155,5 @@ public class SearchActivity extends AppCompatActivity {
             }
         }).start();
     }
-}
+    }
+
