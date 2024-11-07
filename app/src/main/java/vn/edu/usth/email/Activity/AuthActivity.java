@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.Intent;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -162,11 +163,6 @@ public class AuthActivity extends AppCompatActivity {
         });
     }
 
-//    private void initializeGmailApiService() throws IOException, GeneralSecurityException{
-//        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-//        JSON_FACTORY = GsonFactory.getDefaultInstance();
-//        service = new Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, )
-//    }
 
     // Start the Google Sign-In intent
     private void handleSignIn(GetCredentialResponse result) {
@@ -184,16 +180,13 @@ public class AuthActivity extends AppCompatActivity {
         } else {
             // Catch any unrecognized credential type here.
             Log.i("AuthActivity", "Unexpected type of credential: " + result.toString());
-//            Toast.makeText(this, "Unexpected type of credential", Toast.LENGTH_SHORT).show(); // must call Looper.prepare()
+
         }
 
-//        Log.i("AuthActivity", "credential: "+credential.getType());
+
         if(credential.getType().equals(GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL)){
             // convert the credential object into a GoogleIdTokenCredential
             GoogleIdTokenCredential idTokenCredential = GoogleIdTokenCredential.createFrom(credential.getData());
-            // extract GoogleIdTokenCredential
-//            Log.i("AuthActivity", "id: " + idTokenCredential.getId()); // the email
-//            Log.i("AuthActivity", "idToken: " + idTokenCredential.getIdToken()); // JWT token
 
             credentialList.add(idTokenCredential);
 
@@ -250,27 +243,15 @@ public class AuthActivity extends AppCompatActivity {
                                 Log.i("AuthActivity", "Authorization successful");
                                 Log.i("AuthActivity", "accessToken: " + accessToken);
                                 accessTokenList.add(accessToken);
-//                                try {
-//                                    service = initializeGmailApiService(accessTokenList.get(0));
-//                                } catch (GeneralSecurityException e) {
-//                                    throw new RuntimeException(e);
-//                                } catch (IOException e) {
-//                                    throw new RuntimeException(e);
-//                                }
+
                             }
 
-//                            Credential credential = credentialList.get(0);
-//                            Log.i("Get Credential", credential.toString());
-
-                            // get userId from Userinfo API
-//                            HttpTransport httpTransport = new NetHttpTransport();
-//                            HttpRequestFactory requestFactory = httpTransport.createRequestFactory(
-//                                    request -> request.getHeaders().setAuthorization("Bearer " + accessToken)
-//                            );
+//
 
                             String accessToken = accessTokenList.get(0);
                             try {
                                 service = initializeGmailApiService(accessToken);
+
                                 Log.i("Gmail", "Initialized Gmail service instance");
 
                                 if(service == null){
@@ -278,7 +259,7 @@ public class AuthActivity extends AppCompatActivity {
                                 }else{
                                     GoogleIdTokenCredential credential = credentialList.get(0);
                                     String userId = credential.getId();
-                                    fetchEmailsMessages(userId, service, handler);
+                                    startSearchActivity(userId, accessToken);
                                 }
                             } catch (GeneralSecurityException e) {
                                 throw new RuntimeException(e);
@@ -306,82 +287,88 @@ public class AuthActivity extends AppCompatActivity {
 
         return service;
     }
-
-    private void fetchEmailsMessages(String userId, Gmail service, Handler handler){
-        Log.i("fetching", "start getting email messages");
-        Thread bgThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                // get email messages
-                ListMessagesResponse listResponse = null;
-                try {
-                    listResponse = service.users().messages().list(userId).execute();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                List<Message> messages = listResponse.getMessages();
-
-                if(messages == null || messages.isEmpty()){
-                    Log.i("GmailAPI", "No messages found.");
-                }else{
-                    Log.i("GmailAPI", "Messages:");
-
-                    for (Message message: messages){
-                        Message fullMessage = null;
-                        try {
-                            fullMessage = service.users().messages().get(userId, message.getId()).execute();
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                        // get the payload
-                        MessagePart payload = fullMessage.getPayload();
-
-                        if (payload != null){
-                            // get the parts of the message (if it's multipart)
-                            List<MessagePart> parts = payload.getParts();
-
-                            // get the message body
-                            if (parts == null || parts.isEmpty()) {
-                                // Get the body of the message directly
-                                MessagePartBody body = payload.getBody();
-                                if (body != null){
-                                    String messageBody = new String(payload.getBody().decodeData());
-                                    Log.i("Email message","Message Body: " + messageBody);
-                                } else{
-                                    Log.e("GmailAPI", "Message body is null.");
-                                }
-                            } else {
-                                // If the message is multipart, iterate through the parts
-                                for (MessagePart part : parts) {
-                                    if (part != null){
-                                        // Check if the part is text/plain or text/html
-                                        if (part.getMimeType().equals("text/plain")) {
-                                            String body = new String(part.getBody().decodeData());
-                                            Log.i("Email message", "Plain Text Body: " + body);
-                                        } else if (part.getMimeType().equals("text/html")) {
-                                            String htmlBody = new String(part.getBody().decodeData());
-                                            Log.i("Email message", "HTML Body: " + htmlBody);
-                                        }
-                                    } else{
-                                        Log.e("GmailAPI", "Part body is null for part: ");
-                                    }
-                                }
-                            }
-                        } else{
-                            Log.e("GmailAPI", "No payload");
-//                            Log.i("GmailAPI", message.decodeRaw());
-                        }
-                        break;
-                    }
-
-                    Bundle bundle = new Bundle();
-                    bundle.putString("server_response", "check logcat");
-                    android.os.Message msg = new android.os.Message();
-                    msg.setData(bundle);
-                    handler.sendMessage(msg);
-                }
-            }
-        });
-        bgThread.start();
+    private void startSearchActivity(String userId, String accessToken) {
+        Intent intent = new Intent(AuthActivity.this, SearchActivity.class);
+        intent.putExtra("userId", userId);
+        intent.putExtra("accessToken", accessToken);
+        startActivity(intent);
     }
+
+//    private void fetchEmailsMessages(String userId, Gmail service, Handler handler){
+//        Log.i("fetching", "start getting email messages");
+//        Thread bgThread = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                // get email messages
+//                ListMessagesResponse listResponse = null;
+//                try {
+//                    listResponse = service.users().messages().list(userId).setQ("MB").execute();
+//                } catch (IOException e) {
+//                    throw new RuntimeException(e);
+//                }
+//                List<Message> messages = listResponse.getMessages();
+//
+//                if(messages == null || messages.isEmpty()){
+//                    Log.i("GmailAPI", "No messages found.");
+//                }else{
+//                    Log.i("GmailAPI", "Messages:");
+//
+//                    for (Message message: messages){
+//                        Message fullMessage = null;
+//                        try {
+//                            fullMessage = service.users().messages().get(userId, message.getId()).execute();
+//                        } catch (IOException e) {
+//                            throw new RuntimeException(e);
+//                        }
+//                        // get the payload
+//                        MessagePart payload = fullMessage.getPayload();
+//
+//                        if (payload != null){
+//                            // get the parts of the message (if it's multipart)
+//                            List<MessagePart> parts = payload.getParts();
+//
+//                            // get the message body
+//                            if (parts == null || parts.isEmpty()) {
+//                                // Get the body of the message directly
+//                                MessagePartBody body = payload.getBody();
+//                                if (body != null){
+//                                    String messageBody = new String(payload.getBody().decodeData());
+//                                    Log.i("Email message","Message Body: " + messageBody);
+//                                } else{
+//                                    Log.e("GmailAPI", "Message body is null.");
+//                                }
+//                            } else {
+//                                // If the message is multipart, iterate through the parts
+//                                for (MessagePart part : parts) {
+//                                    if (part != null){
+//                                        // Check if the part is text/plain or text/html
+//                                        if (part.getMimeType().equals("text/plain")) {
+//                                            String body = new String(part.getBody().decodeData());
+//                                            Log.i("Email message", "Plain Text Body: " + body);
+//                                        } else if (part.getMimeType().equals("text/html")) {
+//                                            String htmlBody = new String(part.getBody().decodeData());
+//                                            Log.i("Email message", "HTML Body: " + htmlBody);
+//                                        }
+//                                    } else{
+//                                        Log.e("GmailAPI", "Part body is null for part: ");
+//                                    }
+//                                }
+//                            }
+//                        } else{
+//                            Log.e("GmailAPI", "No payload");
+////                            Log.i("GmailAPI", message.decodeRaw());
+//                        }
+//                        break;
+//                    }
+//
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("server_response", "check logcat");
+//                    android.os.Message msg = new android.os.Message();
+//                    msg.setData(bundle);
+//                    handler.sendMessage(msg);
+//                }
+//            }
+//        });
+//        bgThread.start();
+//    }
 }
