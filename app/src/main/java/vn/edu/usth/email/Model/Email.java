@@ -3,7 +3,7 @@ package vn.edu.usth.email.Model;
 // Email.java
 public class Email {
     private String icon;
-    private String senderName; // Changed from title to senderName
+    private String senderName;
     private String snippet;
     private String time;
 

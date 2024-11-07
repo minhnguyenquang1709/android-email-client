@@ -45,13 +45,13 @@ public class EmailAdapter extends RecyclerView.Adapter<EmailAdapter.EmailViewHol
     }
 
     public static class EmailViewHolder extends RecyclerView.ViewHolder {
-        TextView icon, senderName, snippet, time; // Changed from title to senderName
+        TextView icon, senderName, snippet, time;
         ImageView starIcon;
 
         public EmailViewHolder(@NonNull View itemView) {
             super(itemView);
             icon = itemView.findViewById(R.id.icon);
-            senderName = itemView.findViewById(R.id.title); // Changed from title to senderName
+            senderName = itemView.findViewById(R.id.title);
             snippet = itemView.findViewById(R.id.snippet);
             time = itemView.findViewById(R.id.time);
             starIcon = itemView.findViewById(R.id.star_icon);
