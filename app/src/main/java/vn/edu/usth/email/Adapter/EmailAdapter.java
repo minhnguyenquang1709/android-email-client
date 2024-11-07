@@ -1,5 +1,6 @@
 package vn.edu.usth.email.Adapter;// EmailAdapter.java
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,9 +8,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import vn.edu.usth.email.R;
 
+import vn.edu.usth.email.Activity.EmailDetailActivity;
+import vn.edu.usth.email.R;
 import java.util.List;
+
 
 import vn.edu.usth.email.Model.Email;
 
@@ -37,6 +40,13 @@ public class EmailAdapter extends RecyclerView.Adapter<EmailAdapter.EmailViewHol
         holder.senderName.setText(email.getSenderName()); // Changed from title to senderName
         holder.snippet.setText(email.getSnippet());
         holder.time.setText(email.getTime());
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, EmailDetailActivity.class);
+            intent.putExtra("senderName", email.getSenderName());
+            intent.putExtra("snippet", email.getSnippet());
+            intent.putExtra("time", email.getTime());
+            context.startActivity(intent);
+        });
     }
 
     @Override
