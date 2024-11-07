@@ -20,9 +20,9 @@
 
     <color name="tab_icon_default">#FF611717</color>
     <color name="tab_icon_active">#FFE13535</color>
-
+    <color name="grey">#808080</color>
     <color name="bg_primary">#FFFFF6F4</color>
-
+    <color name="toolbar">#EEF2FB</color>
     <!-- Auth Activity -->
     <color name="blue_text">#4361ee</color>
     <color name="blue_bg">#4CC9F0</color>

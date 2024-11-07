@@ -70,7 +70,7 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         // Initialize views
-        searchInput = findViewById(R.id.search_input);
+        searchInput = findViewById(R.id.editTextSearch);
         searchButton = findViewById(R.id.search_btn);
         recyclerView = findViewById(R.id.search_recycle_view);
 
