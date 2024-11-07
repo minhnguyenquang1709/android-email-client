@@ -9,8 +9,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import vn.edu.usth.email.R;
-
+import vn.edu.usth.mobile_project.R;
 public class SearchActivity extends AppCompatActivity {
     EditText searchInput;
     ImageButton searchButton;

@@ -21,8 +21,7 @@ import java.util.ArrayList;
 // import vn.edu.usth.email.Activity.ReadMailActivity;
 import vn.edu.usth.email.Activity.ReadMailActivity;
 import vn.edu.usth.email.Model.EmailItem;
-import vn.edu.usth.email.R;
-
+import vn.edu.usth.mobile_project.R;
 public class MailAdapter extends RecyclerView.Adapter<MailVH> {
     private Context context;
     private ArrayList<EmailItem> emails;

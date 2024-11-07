@@ -21,6 +21,8 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.api.services.gmail.GmailScopes;
 
+import vn.edu.usth.mobile_project.R;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final int PERMISSION_REQUEST_CODE = 1;
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        Write writeFragment = new Write();
+        WriteActivity writeFragment = new WriteActivity();
         fragmentTransaction.replace(R.id.fragment_container, writeFragment);
         fragmentTransaction.commit();
     }

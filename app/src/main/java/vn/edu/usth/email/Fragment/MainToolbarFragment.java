@@ -11,8 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 
-import vn.edu.usth.email.R;
-
+import vn.edu.usth.mobile_project.R;
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MainToolbarFragment#newInstance} factory method to

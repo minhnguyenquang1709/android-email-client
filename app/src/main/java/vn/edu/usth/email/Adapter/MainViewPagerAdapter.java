@@ -13,15 +13,14 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import vn.edu.usth.email.Fragment.FolderFragment;
 import vn.edu.usth.email.Fragment.InboxFragment;
 import vn.edu.usth.email.Fragment.StarredFragment;
-import vn.edu.usth.email.R;
-
+import vn.edu.usth.mobile_project.R;
 public class MainViewPagerAdapter extends FragmentStateAdapter {
     private static final int NUM_PAGES = 3;
     FloatingActionButton fab;
 
     public MainViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
-        fab = fragmentActivity.findViewById(R.id.write_email);
+        fab = fragmentActivity.findViewById(R.id.activity_write);
     }
 
     @NonNull

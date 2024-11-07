@@ -11,8 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import vn.edu.usth.email.Model.EmailItem;
-import vn.edu.usth.email.R;
-
+import vn.edu.usth.mobile_project.R;
 public class MailVH extends RecyclerView.ViewHolder {
     private EmailItem data;
     private ImageView profileImg;

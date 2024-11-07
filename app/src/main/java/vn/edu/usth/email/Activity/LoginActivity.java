@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-import vn.edu.usth.email.R;
+import vn.edu.usth.mobile_project.R;
 
 public class LoginActivity extends AppCompatActivity {
     private TextInputEditText emailInputField;

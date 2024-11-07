@@ -49,10 +49,10 @@ dependencies {
     androidTestImplementation(libs.espresso.core)
 
     // Add these dependencies for Google Sign-In and Gmail API
-    implementation("com.google.android.gms:play-services-auth:20.7.0")  // Google Sign-In
-    implementation("com.google.api-client:google-api-client-android:1.33.0")  // Google API Client
-    implementation("com.google.api-client:google-api-client-gson:1.33.0")  // Gson support for Google APIs
-    implementation("com.google.apis:google-api-services-gmail:v1-rev110-1.25.0")  // Gmail API
-    implementation ("com.sun.mail:android-mail:1.6.7")
-    implementation ("com.sun.mail:android-activation:1.6.7")
+    implementation(libs.play.services.auth)  // Google Sign-In
+    implementation(libs.google.api.client.android)  // Google API Client
+    implementation(libs.google.api.client.gson)  // Gson support for Google APIs
+    implementation(libs.google.api.services.gmail)  // Gmail API
+    implementation (libs.android.mail)
+    implementation (libs.android.activation)
 }

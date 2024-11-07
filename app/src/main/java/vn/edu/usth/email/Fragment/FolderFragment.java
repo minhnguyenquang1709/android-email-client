@@ -8,8 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import vn.edu.usth.email.R;
-
+import vn.edu.usth.mobile_project.R;
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link FolderFragment#newInstance} factory method to

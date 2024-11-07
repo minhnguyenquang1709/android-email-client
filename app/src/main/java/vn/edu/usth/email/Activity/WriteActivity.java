@@ -32,6 +32,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
+import vn.edu.usth.mobile_project.R;
+
 public class WriteActivity extends Fragment {
 
     private static final int PICK_FILE_REQUEST = 1;
@@ -50,7 +52,7 @@ public class WriteActivity extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_write, container, false);
+        View view = inflater.inflate(R.layout.activity_write, container, false);
 
         // Initialize fields and buttons
         sendEmailButton = view.findViewById(R.id.send_email_button);

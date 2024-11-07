@@ -17,8 +17,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import vn.edu.usth.email.R;
-
+import vn.edu.usth.mobile_project.R;
 public class ReadMailActivity extends AppCompatActivity {
     Toolbar toolbar;
     ImageButton backBtn;

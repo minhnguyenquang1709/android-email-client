@@ -17,8 +17,7 @@ import java.util.ArrayList;
 
 import vn.edu.usth.email.Adapter.MailAdapter;
 import vn.edu.usth.email.Model.EmailItem;
-import vn.edu.usth.email.R;
-
+import vn.edu.usth.mobile_project.R;
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link StarredFragment#newInstance} factory method to
