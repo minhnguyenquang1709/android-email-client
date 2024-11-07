@@ -85,14 +85,15 @@ public class SearchActivity extends AppCompatActivity {
         } catch (Exception e) {
             Log.e("SearchActivity", "Failed to initialize Gmail service", e);
         }
+        // Initially fetch all emails
+        fetchEmailsMessages(userId, service, "");
 
         // Set search button click listener
         searchButton.setOnClickListener(view -> {
             String searchTerm = searchInput.getText().toString().trim();
-            if (searchTerm.isEmpty() || searchTerm.length() < 3) {
-                searchInput.setError("Please enter at least 3 characters");
-            } else {
-                fetchEmailsMessages(userId, service, searchTerm);
+            EmailAdapter adapter = (EmailAdapter) recyclerView.getAdapter();
+            if (adapter != null) {
+                adapter.filter(searchTerm);  // Use local filtering
             }
         });
     }
@@ -109,7 +110,8 @@ public class SearchActivity extends AppCompatActivity {
         new Thread(() -> {
             List<Email> emailList = new ArrayList<>();
             try {
-                ListMessagesResponse listResponse = service.users().messages().list(userId).setQ(searchTerm).execute();
+                // Set up the request, only applying a filter if searchTerm is not empty
+                ListMessagesResponse listResponse = service.users().messages().list(userId).setQ(searchTerm.isEmpty() ? "" : searchTerm).execute();
                 List<Message> messages = listResponse.getMessages();
 
                 if (messages != null) {
@@ -120,7 +122,7 @@ public class SearchActivity extends AppCompatActivity {
                         String snippet = fullMessage.getSnippet();
 
                         // Get sender's name or email from headers
-                        String senderName = "Unknown Sender"; // Default value if not found
+                        String senderName = "Unknown Sender";
                         if (fullMessage.getPayload() != null && fullMessage.getPayload().getHeaders() != null) {
                             for (MessagePartHeader header : fullMessage.getPayload().getHeaders()) {
                                 if ("From".equalsIgnoreCase(header.getName())) {
@@ -155,5 +157,6 @@ public class SearchActivity extends AppCompatActivity {
             }
         }).start();
     }
-    }
+
+}
 
