@@ -69,7 +69,7 @@ public class EmailAdapter extends RecyclerView.Adapter<EmailAdapter.EmailViewHol
             senderName = itemView.findViewById(R.id.title);
             snippet = itemView.findViewById(R.id.snippet);
             time = itemView.findViewById(R.id.time);
-            starIcon = itemView.findViewById(R.id.star_icon);
+            starIcon = itemView.findViewById(R.id.starIcon);
         }
     }
 

@@ -1,8 +1,14 @@
 <!-- res/layout/item_email.xml -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:layout_height="80dp"
+    android:paddingHorizontal="16dp"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:background="?android:attr/selectableItemBackground"
+    android:gravity="center"
+    >
+
 
     <!-- Circular icon with the first letter of the sender's name or email -->
     <TextView
@@ -16,45 +22,68 @@
         android:textSize="18sp"
         android:layout_alignParentStart="true" />
 
-    <!-- Sender name (was previously "title") -->
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/icon"
-        android:layout_marginStart="16dp"
-        android:text="Sender Name"
-        android:textSize="16sp"
-        android:textStyle="bold" />
 
     <!-- Email time -->
-    <TextView
-        android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:text="8:00 AM"
-        android:textSize="12sp" />
+    <LinearLayout
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="40dp"
+        android:id="@+id/mailcontent">
 
-    <!-- Email snippet -->
-    <TextView
-        android:id="@+id/snippet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:layout_toEndOf="@id/icon"
-        android:layout_marginTop="4dp"
-        android:layout_marginStart="16dp"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean."
-        android:textSize="14sp" />
+        <!-- Sender name (was previously "title") -->
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="Sender Name"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
-    <!-- Star icon -->
-    <ImageView
-        android:id="@+id/star_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@id/time"
-        android:layout_marginTop="8dp"
-         />
+        <!-- Email snippet -->
+        <TextView
+            android:id="@+id/snippet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:layout_toEndOf="@id/icon"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="12dp"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean."
+            android:textSize="14sp"
+            android:maxLines="2"
+            android:ellipsize="end" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="300dp"
+        android:orientation="vertical"
+        android:layout_alignParentEnd="true">
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_alignParentEnd="true"
+            android:text="8:00 AM"
+            android:textSize="12sp" />
+
+        <!-- Star icon -->
+        <ImageView
+            android:id="@+id/starIcon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/star2_icon__" />
+
+
+    </LinearLayout>
+
 </RelativeLayout>
