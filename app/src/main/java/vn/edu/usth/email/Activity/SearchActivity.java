@@ -15,8 +15,6 @@ import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.model.ListMessagesResponse;
 import com.google.api.services.gmail.model.Message;
-import com.google.api.services.gmail.model.MessagePart;
-import com.google.api.services.gmail.model.MessagePartBody;
 import com.google.api.services.gmail.model.MessagePartHeader;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -27,34 +25,12 @@ import java.util.List;
 
 import vn.edu.usth.email.Adapter.EmailAdapter;
 import vn.edu.usth.email.R;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.EditText;
-import android.widget.ImageButton;
-import android.os.Handler;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import com.google.api.services.gmail.model.MessagePartHeader;
-import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.JsonFactory;
-import com.google.api.client.json.gson.GsonFactory;
-import com.google.api.services.gmail.Gmail;
-import com.google.api.services.gmail.model.ListMessagesResponse;
-import com.google.api.services.gmail.model.Message;
-import com.google.api.services.gmail.model.MessagePart;
-import com.google.api.services.gmail.model.MessagePartBody;
 
-import java.io.IOException;
-import java.security.GeneralSecurityException;
-import java.util.List;
+import com.google.api.client.http.javanet.NetHttpTransport;
+
 
 import vn.edu.usth.email.Model.Email;
-import vn.edu.usth.email.R;
+
 
 public class SearchActivity extends AppCompatActivity {
 
