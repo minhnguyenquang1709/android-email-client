@@ -4,6 +4,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="20dp"
     tools:context=".Activity.AuthActivity">
 
     <LinearLayout
@@ -11,17 +12,135 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/auth_icon_mail_height"
-            android:src="@drawable/icon_mail"
-            android:background="@color/blue_bg"/>
-
+        <!-- Subtitle -->
         <TextView
+            android:id="@+id/password_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign In"
+            android:layout_marginTop="84dp"
+            android:textSize="26sp"/>
+
+        <!-- Description Text -->
+        <TextView
+            android:id="@+id/password_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Getting started with mail API."
+            android:textColor="@color/dark_gray"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:textSize="14sp" />
+
+        <!-- New Password Input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLayoutEmail"
+            android:layout_marginTop="24dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/init_message1"
-            android:padding="@dimen/auth_message_padding"/>
+            android:hint="Phone number or email"
+            android:textColorHint="@color/dark_gray">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColorHint="@color/dark_gray"
+                android:padding="12dp"
+                />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Confirm Password Input -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/txtLayoutPass"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_marginTop="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:textColorHint="@color/dark_gray">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:drawableEnd="@drawable/visibility"
+                android:textColorHint="@color/dark_gray"
+                android:layout_marginTop="8dp"
+                android:padding="12dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:alpha="0.7"
+                android:text="@string/remember_me"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                android:theme="@style/MyTextInputLayout_overlay" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:alpha="0.8"
+                android:text="@string/i_forgot_my_password"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/box_add_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/add"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Use your current Gmail address"
+                android:gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/blue_text"/>
+
+        </LinearLayout>
+
+        <!-- Button Container -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="end">
+
+            <!-- Change Password Button -->
+            <Button
+                android:id="@+id/change_password_button"
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:backgroundTint="@color/btn_login"
+                android:padding="12dp"
+                android:text="Log In"
+                android:textColor="@android:color/white"
+                android:textSize="14dp"/>
+        </RelativeLayout>
 
         <LinearLayout
             android:id="@+id/email_list"
@@ -29,27 +148,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingHorizontal="@dimen/auth_message_padding"/>
-
-        <LinearLayout
-            android:id="@+id/box_add_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <ImageView
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/add"
-                android:layout_marginStart="@dimen/auth_message_padding"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="@string/init_message2"
-                android:gravity="center_vertical"
-                android:layout_marginStart="@dimen/auth_message_padding"
-                android:textColor="@color/blue_text"/>
-
-        </LinearLayout>
 
     </LinearLayout>
 
