@@ -26,6 +26,17 @@
         <activity
             android:name=".Activity.SearchActivity"
             android:exported="false" />
+        <activity
+            android:name=".Activity.SendActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.StarredActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.TrashActivity"
+            android:exported="false" /><activity
+        android:name=".Activity.HelpFeedbackActivity"
+        android:exported="false" />
 
 
     </application>
