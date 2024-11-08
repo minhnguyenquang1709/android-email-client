@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_inbox"
+        android:title="Inbox"
+        android:icon="@drawable/ic_trash"/>
+    <item
+        android:id="@+id/nav_sent"
+        android:title="Sent"
+        android:icon="@drawable/heart_icon"/>
+    <item
+        android:id="@+id/nav_drafts"
+        android:title="Drafts"
+        android:icon="@drawable/folder_icon"/>
+    <!-- Add other items as needed -->
+</menu>

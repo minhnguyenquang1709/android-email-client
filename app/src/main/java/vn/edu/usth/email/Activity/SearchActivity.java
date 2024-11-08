@@ -22,9 +22,16 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import android.view.View;
+import android.view.MenuItem;
+import androidx.drawerlayout.widget.DrawerLayout;
+import com.google.android.material.navigation.NavigationView;
+import androidx.core.view.GravityCompat;
+import androidx.appcompat.widget.Toolbar;
 
 import vn.edu.usth.email.Adapter.EmailAdapter;
 import vn.edu.usth.email.R;
+
 
 import com.google.api.client.http.javanet.NetHttpTransport;
 
@@ -37,6 +44,7 @@ public class SearchActivity extends AppCompatActivity {
     private EditText searchInput;
     private ImageButton searchButton;
     private RecyclerView recyclerView;
+    private DrawerLayout drawerLayout;
     private Gmail service;
     private String userId;
 
@@ -49,7 +57,31 @@ public class SearchActivity extends AppCompatActivity {
         searchInput = findViewById(R.id.editTextSearch);
         searchButton = findViewById(R.id.search_btn);
         recyclerView = findViewById(R.id.search_recycle_view);
+        // Initialize views
+        drawerLayout = findViewById(R.id.drawer_layout);
+        ImageButton menuButton = findViewById(R.id.icon_menu);
+        NavigationView navigationView = findViewById(R.id.nav_view);
 
+        // Set up hamburger icon to open drawer
+        menuButton.setOnClickListener(view -> drawerLayout.openDrawer(GravityCompat.START));
+
+        // Handle navigation item clicks
+//        navigationView.setNavigationItemSelectedListener(item -> {
+//            switch (item.getItemId()) {
+//                case R.id.nav_inbox:
+//                    // Handle Inbox click
+//                    break;
+//                case R.id.nav_sent:
+//                    // Handle Sent click
+//                    break;
+//                case R.id.nav_drafts:
+//                    // Handle Drafts click
+//                    break;
+//                // Add other cases for more items
+//            }
+//            drawerLayout.closeDrawer(GravityCompat.START);
+//            return true;
+//        });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         // Retrieve passed data

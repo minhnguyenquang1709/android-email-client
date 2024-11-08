@@ -36,7 +36,7 @@
         android:layout_marginBottom="10dp">
         <!-- Sender Name -->
         <TextView
-            android:id="@+id/subject"
+            android:id="@+id/sender_name"
             android:layout_width="357dp"
             android:layout_height="wrap_content"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean."
