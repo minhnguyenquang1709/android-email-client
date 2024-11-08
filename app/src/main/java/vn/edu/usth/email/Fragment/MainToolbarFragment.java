@@ -77,7 +77,7 @@ public class MainToolbarFragment extends Fragment {
             public void onClick(View v) {
                 Log.i("MainToolbarFragment", "Start search");
 
-                // start SearchActivity
+                // start HomeActivity
             }
         });
         btnSettings.setOnClickListener(new View.OnClickListener() {
