@@ -1,0 +1,12 @@
+<!-- res/menu/bottom_nav_menu.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/mail_icon"
+        android:icon="@drawable/ic_mail"
+        android:title="@string/mail_icon" />
+
+    <item
+        android:id="@+id/video_icon"
+        android:icon="@drawable/ic_video"
+        android:title="@string/video_icon" />
+</menu>

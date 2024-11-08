@@ -1,0 +1,30 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/search"
+        android:title="Main"
+        android:icon="@drawable/ic_menu"/>
+    <item
+        android:id="@+id/Starred"
+        android:title="Starred"
+        android:icon="@drawable/star2_icon__"/>
+
+    <item
+        android:id="@+id/nav_sent"
+        android:title="Sent"
+        android:icon="@drawable/send"/>
+    <item
+        android:id="@+id/trash"
+        android:title="Trash"
+        android:icon="@drawable/trash"/>
+
+    <item
+        android:id="@+id/helpnfeedback"
+        android:title="Help &amp; Feedback"
+        android:icon="@drawable/help_icon"/>
+
+    <item
+        android:id="@+id/video_icon"
+        android:icon="@drawable/ic_video"
+        android:title="@string/video_icon" />
+    <!-- Add other items as needed -->
+</menu>
