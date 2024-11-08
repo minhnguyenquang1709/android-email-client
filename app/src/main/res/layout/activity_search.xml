@@ -88,8 +88,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:background="@color/toolbar"
             app:menu="@menu/bottom_nav_menu"
-            android:background="?android:attr/windowBackground" />
+            app:labelVisibilityMode="unlabeled"
+            app:itemHorizontalTranslationEnabled="false"
+            android:gravity="center" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <!-- Sidebar Navigation View -->

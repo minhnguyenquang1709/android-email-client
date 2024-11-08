@@ -109,5 +109,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
     <string name="init_message2">Add a gmail address</string>
     <string name="profile" />
     <string name="search_email" />
+    <string name="mail_icon" />
+    <string name="video_icon" />
 
 </resources>
