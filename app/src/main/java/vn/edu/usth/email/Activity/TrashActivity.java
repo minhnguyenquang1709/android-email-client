@@ -20,7 +20,7 @@ public class TrashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trash);
 
-        listTrashEmails = findViewById(R.id.list_trash_emails);
+        listTrashEmails = findViewById(R.id.trash_recycle_view);
 
         // Sample data for trash emails
         trashEmails = new ArrayList<>();

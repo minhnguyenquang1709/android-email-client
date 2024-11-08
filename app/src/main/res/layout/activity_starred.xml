@@ -89,16 +89,15 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
-                android:text="Starred Emails"
+                android:text="☆Starred Emails☆"
                 android:textSize="18sp"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
         </LinearLayout>
 
-        Lin
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/trash_recycle_view"
+            android:id="@+id/starred_recycle_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="130dp"

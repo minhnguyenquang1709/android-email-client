@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="8dp"
-                android:text="Trash"
+                android:text="🗑 Trash 🗑"
                 android:textSize="18sp"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
@@ -101,7 +101,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="130dp"
             android:padding="16dp"
-            android:scrollbars="vertical"/>
+            android:scrollbars="vertical" />
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"

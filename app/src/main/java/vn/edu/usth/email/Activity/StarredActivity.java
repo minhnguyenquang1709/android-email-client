@@ -20,7 +20,7 @@ public class StarredActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_starred);
 
-        listStarredEmails = findViewById(R.id.list_starred_emails);
+        listStarredEmails = findViewById(R.id.starred_recycle_view);
 
         // Sample data for starred emails
         starredEmails = new ArrayList<>();

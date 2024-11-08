@@ -20,7 +20,7 @@ public class SendActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send);
 
-        listSentEmails = findViewById(R.id.list_sent_emails);
+        listSentEmails = findViewById(R.id.sent_recycle_view);
 
         // Sample data for sent emails
         sentEmails = new ArrayList<>();
