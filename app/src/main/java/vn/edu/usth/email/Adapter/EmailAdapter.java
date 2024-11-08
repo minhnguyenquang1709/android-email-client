@@ -1,7 +1,6 @@
 package vn.edu.usth.email.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import vn.edu.usth.email.Activity.EmailDetailActivity;
 import vn.edu.usth.email.Model.Email;
 import vn.edu.usth.email.R;
 import java.util.ArrayList;
@@ -17,6 +15,11 @@ import java.util.List;
 
 public class EmailAdapter extends RecyclerView.Adapter<EmailAdapter.EmailViewHolder> {
 
+    public interface OnItemClickListener {
+        void onItemClick(String senderName, String snippet, String time, String messageId);
+    }
+
+    private OnItemClickListener listener;
     private Context context;
     private List<Email> originalEmailList;
     private List<Email> filteredEmailList;
@@ -27,6 +30,10 @@ public class EmailAdapter extends RecyclerView.Adapter<EmailAdapter.EmailViewHol
         this.originalEmailList = new ArrayList<>(emailList);
         this.filteredEmailList = new ArrayList<>(emailList);
         this.accessToken = accessToken;
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 
     @NonNull
@@ -45,13 +52,9 @@ public class EmailAdapter extends RecyclerView.Adapter<EmailAdapter.EmailViewHol
         holder.time.setText(email.getTime());
 
         holder.itemView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, EmailDetailActivity.class);
-            intent.putExtra("senderName", email.getSenderName());
-            intent.putExtra("snippet", email.getSnippet());
-            intent.putExtra("time", email.getTime());
-            intent.putExtra("messageId", email.getMessageId());
-            intent.putExtra("accessToken", accessToken);
-            context.startActivity(intent);
+            if (listener != null) {
+                listener.onItemClick(email.getSenderName(), email.getSnippet(), email.getTime(), email.getMessageId());
+            }
         });
     }
 

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -78,6 +79,14 @@ public class SearchActivity extends AppCompatActivity {
             fetchEmailsMessages(userId, service, searchTerm);
         });
     }
+//    fetch data again when delete mail
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            fetchEmailsMessages(userId, service, "");
+        }
+    }
 
     // Initialize Gmail API service
     private Gmail initializeGmailApiService(String accessToken) throws GeneralSecurityException, IOException {
@@ -99,13 +108,9 @@ public class SearchActivity extends AppCompatActivity {
 
                 if (messages != null) {
                     for (Message message : messages) {
-                        // Fetch the full message details
                         Message fullMessage = service.users().messages().get(userId, message.getId()).execute();
-
-                        // Get the snippet
                         String snippet = fullMessage.getSnippet();
 
-                        // Get sender's name or email from headers
                         String senderName = "Unknown Sender";
                         if (fullMessage.getPayload() != null && fullMessage.getPayload().getHeaders() != null) {
                             for (MessagePartHeader header : fullMessage.getPayload().getHeaders()) {
@@ -116,24 +121,26 @@ public class SearchActivity extends AppCompatActivity {
                             }
                         }
 
-                        // Get sender's initial for the icon text
                         String iconText = senderName.isEmpty() ? "?" : senderName.substring(0, 1).toUpperCase();
-
-                        // Format the internal date as time
                         long internalDate = fullMessage.getInternalDate();
                         String time = new SimpleDateFormat("h:mm a").format(new Date(internalDate));
-
-                        // Fetch the message ID
                         String messageId = message.getId();
 
-                        // Create and add an Email object to the list with messageId included
                         Email email = new Email(iconText, senderName, snippet, time, messageId);
                         emailList.add(email);
                     }
 
-                    // Update RecyclerView on main thread
                     runOnUiThread(() -> {
-                        EmailAdapter adapter = new EmailAdapter(this, emailList, accessToken); // Pass accessToken here
+                        EmailAdapter adapter = new EmailAdapter(this, emailList, accessToken);
+                        adapter.setOnItemClickListener((senderName, snippet, time, messageId) -> {
+                            Intent intent = new Intent(SearchActivity.this, EmailDetailActivity.class);
+                            intent.putExtra("senderName", senderName);
+                            intent.putExtra("snippet", snippet);
+                            intent.putExtra("time", time);
+                            intent.putExtra("messageId", messageId);
+                            intent.putExtra("accessToken", accessToken);
+                            startActivityForResult(intent, 1);
+                        });
                         recyclerView.setAdapter(adapter);
                     });
                 } else {
