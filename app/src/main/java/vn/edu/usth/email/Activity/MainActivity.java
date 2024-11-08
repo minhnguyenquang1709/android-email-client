@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         WriteActivity writeFragment = new WriteActivity();
-        fragmentTransaction.replace(R.id.fragment_container, writeFragment);
+//        fragmentTransaction.replace(R.id.fragment_container, WriteActivity);
         fragmentTransaction.commit();
     }
 

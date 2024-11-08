@@ -114,4 +114,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
     <string name="recipient_email">Recipient email</string>
     <string name="your_email">Your Email</string>
     <string name="drop_down">Dropdown</string>
+    <string name="email_body_hint">Email body</string>
+
+    <string name="client_id">1090608125846-qon86vtqa3srhekp2i8cqvctmderk2gm.apps.googleusercontent.com</string>
+    <string name="init_message1">You can now add all your gmail addresses.</string>
+    <string name="init_message2">Add a gmail address</string>
 </resources>

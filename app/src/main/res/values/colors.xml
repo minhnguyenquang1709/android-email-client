@@ -17,7 +17,7 @@
     <color name="switch_settings_label">#99000000</color>
     <color name="green">#FF2CD747</color>
     <color name="red_icon_bg">#FFFFDDDD</color>
-
+    <color name="blue_text">#4361ee</color>
     <color name="tab_icon_default">#FF611717</color>
     <color name="tab_icon_active">#FFE13535</color>
 

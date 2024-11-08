@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <!-- Add Internet permission -->
-    <uses-permission android:name="android.permission.INTERNET" />
-
-    <!-- Optional: Add permission to check network state -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <!-- Optional: Permission to read/write external storage (in case you want to deal with file attachments) -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -23,19 +14,7 @@
         android:theme="@style/Theme.App"
         tools:targetApi="31">
         <activity
-            android:name=".ReadMailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activity.WriteActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activity.SearchActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Activity.SettingsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".LoginActivity"
+            android:name="vn.edu.usth.email.Activity.WriteActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,8 +23,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name="vn.edu.usth.email.Activity.ReadMailActivity"
+            android:exported="false" />
+
+        <activity
+            android:name="vn.edu.usth.email.Activity.SearchActivity"
+            android:exported="false" />
+        <activity
+            android:name="vn.edu.usth.email.Activity.SettingsActivity"
+            android:exported="false" />
+        <activity
+            android:name="vn.edu.usth.email.Activity.LoginActivity"
             android:exported="false">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity
+            android:name="vn.edu.usth.email.Activity.MainActivity"
+            android:exported="false">
+
         </activity>
     </application>
 

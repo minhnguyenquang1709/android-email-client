@@ -12,7 +12,7 @@
     <RelativeLayout
         android:id="@+id/title_bar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/marginTop"
         android:background="@color/white"
         android:elevation="@dimen/elevation"
@@ -20,11 +20,11 @@
 
         <!-- Back button (arrow) -->
         <ImageButton
-            android:id="@+id/close_btn"
+            android:id="@+id/back_arrow"
             android:layout_width="@dimen/layoutWidth"
             android:layout_height="@dimen/layoutHeight"
             android:layout_marginStart="@dimen/layoutMarginStart"
-            android:src="@drawable/close_24dp_666666_fill0_wght400_grad0_opsz24"
+            android:src="@drawable/back_arrow"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/back"
             app:tint="#000000"
@@ -40,7 +40,7 @@
             android:layout_marginEnd="@dimen/layoutMarginStart"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/more_option"
-            android:src="@drawable/more_vert_24dp_666666_fill0_wght400_grad0_opsz24"
+            android:src="@drawable/dots"
             app:tint="#000000"
             android:layout_centerVertical="true"/>
 
@@ -52,7 +52,7 @@
             android:layout_toStartOf="@id/more_options_button"
             android:layout_marginEnd="@dimen/layoutMarginStart"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/send_24dp_666666_fill0_wght400_grad0_opsz24"
+            android:src="@drawable/sending"
             android:contentDescription="@string/send_mail"
             app:tint="#000000"
             android:layout_centerVertical="true"/>
@@ -65,175 +65,170 @@
             android:layout_toStartOf="@id/send_email_button"
             android:layout_marginEnd="@dimen/layoutMarginStart"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:src="@drawable/attachment_24dp_666666_fill0_wght400_grad0_opsz24"
+            android:src="@drawable/link2"
             android:contentDescription="@string/add_file"
             app:tint="#000000"
             android:layout_centerVertical="true"/>
 
     </RelativeLayout>
 
+    <!-- From Email Field -->
     <LinearLayout
+        android:id="@+id/from_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="50dp">
+        android:layout_marginTop="@dimen/layoutMarginStart"
+        android:orientation="horizontal"
+        android:padding="@dimen/layoutMarginStart"
+        app:layout_constraintTop_toBottomOf="@id/title_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <!-- From Email Field -->
-        <LinearLayout
-            android:id="@+id/from_email"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/from_label"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/layoutMarginStart"
-            android:orientation="horizontal"
-            android:padding="@dimen/layoutMarginStart"
-            app:layout_constraintTop_toBottomOf="@id/title_bar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            android:layout_gravity="center_vertical"
+            android:text="@string/from_email"
+            android:textColor="#000000"
+            android:textSize="@dimen/textSizeEmail"/>
 
-            <TextView
-                android:id="@+id/from_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="@string/from_email"
-                android:textColor="#000000"
-                android:textSize="@dimen/textSizeEmail"/>
-
-            <EditText
-                android:id="@+id/input_email"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/yourLayoutMarginStart"
-                android:layout_weight="1"
-                android:hint="@string/your_email"
-                android:textColor="@color/dark_gray"
-                android:textSize="@dimen/textSizeEmail"
-                android:layout_marginTop="@dimen/layoutMarginTop"
-                android:inputType="textEmailAddress"
-                android:background="@null"/>
-
-            <ImageButton
-                android:id="@+id/from_arrow_button"
-                android:layout_width="@dimen/layoutWidth"
-                android:layout_height="@dimen/layoutHeight"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/arrow_drop_down_24dp_666666_fill0_wght400_grad0_opsz24"
-                android:contentDescription="@string/drop_down"
-                app:tint="#000000"/>
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray" />
-
-        <!-- To Email Field -->
-        <LinearLayout
-            android:id="@+id/to_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/layoutMarginStart"
-            android:orientation="horizontal"
-            android:padding="@dimen/layoutMarginStart"
-            app:layout_constraintTop_toBottomOf="@id/from_email"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/to_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/to_email"
-                android:textSize="@dimen/textSizeEmail"
-                android:textColor="#000000"
-                android:layout_gravity="center_vertical"/>
-
-            <EditText
-                android:id="@+id/input_to_email"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/yourLayoutMarginStart"
-                android:layout_weight="1"
-                android:hint="@string/recipient_email"
-                android:textColor="@color/dark_gray"
-                android:textSize="@dimen/textSizeEmail"
-                android:layout_marginTop="@dimen/layoutMarginTop"
-                android:inputType="textEmailAddress"
-                android:background="@null"/>
-
-            <ImageButton
-                android:id="@+id/to_arrow_button"
-                android:layout_width="@dimen/layoutWidth"
-                android:layout_height="@dimen/layoutHeight"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/arrow_drop_down_24dp_666666_fill0_wght400_grad0_opsz24"
-                android:contentDescription="@string/drop_down"
-                app:tint="#000000"/>
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray" />
-
-        <!-- Subject Field -->
-        <LinearLayout
-            android:id="@+id/subject_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/layoutMarginStart"
-            android:orientation="horizontal"
-            android:padding="@dimen/layoutMarginStart"
-            app:layout_constraintTop_toBottomOf="@id/to_email"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <TextView
-                android:id="@+id/subject_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/subject_email"
-                android:textSize="@dimen/textSizeEmail"
-                android:textColor="@color/black"
-                android:layout_gravity="center_vertical"/>
-
-            <EditText
-                android:id="@+id/input_subject"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/yourLayoutMarginStart"
-                android:layout_weight="1"
-                android:hint="@string/hint"
-                android:textColor="@color/dark_gray"
-                android:textSize="@dimen/textSizeEmail"
-                android:background="@null"/>
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/gray" />
-
-        <!-- Email Body Field -->
         <EditText
-            android:id="@+id/input_email_body"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="@dimen/marginStart"
-            android:layout_marginBottom="@dimen/marginStart"
-            app:layout_constraintTop_toBottomOf="@id/subject_email"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:textColorHint="@color/dark_gray"
-            android:textColor="@color/black"
-            android:gravity="top"
+            android:id="@+id/input_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/yourLayoutMarginStart"
+            android:layout_weight="1"
+            android:hint="@string/your_email"
+            android:textColor="#000000"
             android:textSize="@dimen/textSizeEmail"
-            android:padding="@dimen/marginStart"
-            android:background="@null"
-            android:inputType="textMultiLine"
-            android:lines="10"/>
+            android:layout_marginTop="@dimen/layoutMarginTop"
+            android:inputType="textEmailAddress"
+            android:background="@null"/>
+
+        <ImageButton
+            android:id="@+id/from_arrow_button"
+            android:layout_width="@dimen/layoutWidth"
+            android:layout_height="@dimen/layoutHeight"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/arrow_down"
+            android:contentDescription="@string/drop_down"
+            app:tint="#000000"/>
     </LinearLayout>
 
+    <!-- Separator Line -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/viewHeight"
+        android:background="@color/dark_gray"
+        app:layout_constraintTop_toBottomOf="@id/from_email" />
+
+    <!-- To Email Field -->
+    <LinearLayout
+        android:id="@+id/to_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layoutMarginStart"
+        android:orientation="horizontal"
+        android:padding="@dimen/layoutMarginStart"
+        app:layout_constraintTop_toBottomOf="@id/from_email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/to_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/to_email"
+            android:textSize="@dimen/textSizeEmail"
+            android:textColor="#000000"
+            android:layout_gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/input_to_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/yourLayoutMarginStart"
+            android:layout_weight="1"
+            android:hint="@string/recipient_email"
+            android:textColor="#000000"
+            android:textSize="@dimen/textSizeEmail"
+            android:layout_marginTop="@dimen/layoutMarginTop"
+            android:inputType="textEmailAddress"
+            android:background="@null"/>
+
+        <ImageButton
+            android:id="@+id/to_arrow_button"
+            android:layout_width="@dimen/layoutWidth"
+            android:layout_height="@dimen/layoutHeight"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/arrow_down"
+            android:contentDescription="@string/drop_down"
+            app:tint="#000000"/>
+    </LinearLayout>
+
+    <!-- Separator Line -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/toViewHeight"
+        android:background="@color/dark_gray"
+        app:layout_constraintTop_toBottomOf="@id/to_email" />
+
+    <!-- Subject Field -->
+    <LinearLayout
+        android:id="@+id/subject_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/layoutMarginStart"
+        android:orientation="horizontal"
+        android:padding="@dimen/layoutMarginStart"
+        app:layout_constraintTop_toBottomOf="@id/to_email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/subject_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/subject_email"
+            android:textSize="@dimen/textSizeEmail"
+            android:textColor="@color/black"
+            android:layout_gravity="center_vertical"/>
+
+        <EditText
+            android:id="@+id/input_subject"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/yourLayoutMarginStart"
+            android:layout_weight="1"
+            android:hint="@string/hint"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSizeEmail"
+            android:background="@null"/>
+    </LinearLayout>
+
+    <!-- Separator Line -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/viewHeight"
+        android:background="@color/dark_gray"
+        app:layout_constraintTop_toBottomOf="@id/subject_email" />
+
+    <!-- Email Body Field -->
+    <EditText
+        android:id="@+id/input_email_body"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/marginStart"
+        android:layout_marginBottom="@dimen/marginStart"
+        app:layout_constraintTop_toBottomOf="@id/subject_email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColorHint="@color/dark_gray"
+        android:textColor="@color/black"
+        android:gravity="top"
+        android:textSize="@dimen/textSizeEmail"
+        android:hint="@string/email_body_hint"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -14,6 +14,10 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.api.services.gmail.Gmail;
@@ -34,7 +38,7 @@ import javax.mail.internet.MimeMessage;
 
 import vn.edu.usth.mobile_project.R;
 
-public class WriteActivity extends Fragment {
+public class WriteActivity extends AppCompatActivity {
 
     private static final int PICK_FILE_REQUEST = 1;
 
@@ -49,8 +53,38 @@ public class WriteActivity extends Fragment {
     private EditText bodyField;
     private Uri selectedFileUri;
 
-    @Nullable
     @Override
+    protected void onCreate(Bundle savedInstanceState ) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_write);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.activity_write), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+
+        });
+        sendEmailButton = findViewById(R.id.send_email_button);
+        addFileButton = findViewById(R.id.add_files_button);
+        moreOptionsButton = findViewById(R.id.more_options_button);
+        fromArrowButton = findViewById(R.id.from_arrow_button);
+        toArrowButton = findViewById(R.id.to_arrow_button);
+        fromEmailField = findViewById(R.id.input_email);
+        toEmailField = findViewById(R.id.input_to_email);
+        subjectField = findViewById(R.id.input_subject);
+        bodyField = findViewById(R.id.input_email_body);
+
+        // Set listeners for the buttons
+        sendEmailButton.setOnClickListener(v -> sendEmail());
+        addFileButton.setOnClickListener(v -> openFilePicker());
+        moreOptionsButton.setOnClickListener(v -> showMoreOptions());
+
+        // Set listeners for the dropdown arrow buttons
+        fromArrowButton.setOnClickListener(v -> showEmailDropdown(fromArrowButton, fromEmailField));
+        toArrowButton.setOnClickListener(v -> showEmailDropdown(toArrowButton, toEmailField));
+    }
+
+
+
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_write, container, false);
 
@@ -149,9 +183,9 @@ public class WriteActivity extends Fragment {
         @Override
         protected void onPostExecute(Boolean success) {
             if (success) {
-                Toast.makeText(getActivity(), "Email sent!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(WriteActivity.this, "Email sent!", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getActivity(), "Error sending email: " + errorMessage, Toast.LENGTH_LONG).show();
+                Toast.makeText(WriteActivity.this, "Error sending email: " + errorMessage, Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -166,14 +200,14 @@ public class WriteActivity extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PICK_FILE_REQUEST && resultCode == getActivity().RESULT_OK && data != null) {
+        if (requestCode == PICK_FILE_REQUEST && resultCode == RESULT_OK && data != null) {
             selectedFileUri = data.getData();
-            Toast.makeText(getActivity(), "File selected: " + selectedFileUri.getPath(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(WriteActivity.this, "File selected: " + selectedFileUri.getPath(), Toast.LENGTH_SHORT).show();
         }
     }
 
     private void showMoreOptions() {
-        PopupMenu popupMenu = new PopupMenu(getActivity(), moreOptionsButton);
+        PopupMenu popupMenu = new PopupMenu(WriteActivity.this, moreOptionsButton);
         popupMenu.getMenu().add("Setting");
         popupMenu.getMenu().add("Discard Email");
 
@@ -194,7 +228,7 @@ public class WriteActivity extends Fragment {
     }
 
     private void openSettings() {
-        Toast.makeText(getActivity(), "Opening settings...", Toast.LENGTH_SHORT).show();
+        Toast.makeText(WriteActivity.this, "Opening settings...", Toast.LENGTH_SHORT).show();
         // Implement actual settings logic here
     }
 
@@ -203,11 +237,11 @@ public class WriteActivity extends Fragment {
         toEmailField.setText("");
         subjectField.setText("");
         bodyField.setText("");
-        Toast.makeText(getActivity(), "Email discarded!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(WriteActivity.this, "Email discarded!", Toast.LENGTH_SHORT).show();
     }
 
     private void showEmailDropdown(View anchor, EditText emailField) {
-        PopupMenu popupMenu = new PopupMenu(getActivity(), anchor);
+        PopupMenu popupMenu = new PopupMenu(WriteActivity.this, anchor);
 
         // Example dynamic fetching of email addresses (replace with actual email retrieval logic)
         List<String> emails = getUserEmailAddresses();

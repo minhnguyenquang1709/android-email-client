@@ -53,4 +53,7 @@
     <dimen name="layoutMarginTop">3dp</dimen>
     <dimen name="textSizeEmail">16sp</dimen>
     <dimen name="yourLayoutMarginStart">8dp</dimen>
+    <dimen name="viewHeight">1dp</dimen>
+    <dimen name="toViewHeight">2dp</dimen>
+
 </resources>
