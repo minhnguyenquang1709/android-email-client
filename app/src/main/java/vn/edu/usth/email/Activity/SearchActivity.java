@@ -52,28 +52,28 @@ public class SearchActivity extends AppCompatActivity {
         searchInput = findViewById(R.id.editTextSearch);
         searchButton = findViewById(R.id.search_btn);
         recyclerView = findViewById(R.id.search_recycle_view);
+
         drawerLayout = findViewById(R.id.drawer_layout);
         ImageButton menuButton = findViewById(R.id.icon_menu);
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
+        // Set up Navigation Drawer
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
 
-                if (itemId == R.id.search && !(SearchActivity.this instanceof SearchActivity)) {
-                    startActivity(new Intent(SearchActivity.this, SearchActivity.class));
-                }else if (itemId == R.id.Starred) {
-                    startActivity(new Intent(SearchActivity.this, StarredActivity.class));
+                if (itemId == R.id.Starred) {
+                    startStarredActivity(userId, accessToken);
                 } else if (itemId == R.id.nav_sent) {
-                    startActivity(new Intent(SearchActivity.this, SendActivity.class));
+                    startSendActivity(userId, accessToken);
                 } else if (itemId == R.id.trash) {
-                    startActivity(new Intent(SearchActivity.this, TrashActivity.class));
+                    startTrashActivity(userId, accessToken);
                 } else if (itemId == R.id.helpnfeedback) {
                     startActivity(new Intent(SearchActivity.this, HelpFeedbackActivity.class));
                 }
-
 
                 // Close the drawer after an item is clicked
                 drawerLayout.closeDrawers();
@@ -121,7 +121,30 @@ public class SearchActivity extends AppCompatActivity {
             fetchEmailsMessages(userId, service, searchTerm);
         });
     }
-//    fetch data again when delete mail
+
+    // Define separate methods for each activity to start
+    private void startStarredActivity(String userId, String accessToken) {
+        Intent intent = new Intent(SearchActivity.this, StarredActivity.class);
+        intent.putExtra("userId", userId);
+        intent.putExtra("accessToken", accessToken);
+        startActivity(intent);
+    }
+
+    private void startSendActivity(String userId, String accessToken) {
+        Intent intent = new Intent(SearchActivity.this, SendActivity.class);
+        intent.putExtra("userId", userId);
+        intent.putExtra("accessToken", accessToken);
+        startActivity(intent);
+    }
+
+    private void startTrashActivity(String userId, String accessToken) {
+        Intent intent = new Intent(SearchActivity.this, TrashActivity.class);
+        intent.putExtra("userId", userId);
+        intent.putExtra("accessToken", accessToken);
+        startActivity(intent);
+    }
+
+    // Refresh data when returning from EmailDetailActivity after deletion
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
