@@ -1,20 +1,19 @@
 <!-- res/layout/item_email.xml -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:paddingHorizontal="16dp"
+    android:layout_height="100dp"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
     android:background="?android:attr/selectableItemBackground"
-    android:gravity="center"
+    android:gravity="center_vertical"
     >
-
 
     <!-- Circular icon with the first letter of the sender's name or email -->
     <TextView
         android:id="@+id/icon"
         android:layout_width="40dp"
         android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
         android:background="@drawable/circular_background"
         android:gravity="center"
         android:text="B"
@@ -25,11 +24,10 @@
 
     <!-- Email time -->
     <LinearLayout
-        android:layout_width="280dp"
+        android:id="@+id/mailcontent"
+        android:layout_width="300dp"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginLeft="40dp"
-        android:id="@+id/mailcontent">
+        android:orientation="vertical">
 
         <!-- Sender name (was previously "title") -->
         <TextView
@@ -47,23 +45,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/title"
-            android:layout_toEndOf="@id/icon"
-            android:layout_marginTop="4dp"
             android:layout_marginStart="12dp"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean."
-            android:textSize="14sp"
+            android:layout_marginTop="4dp"
+            android:layout_toEndOf="@id/icon"
+            android:ellipsize="end"
             android:maxLines="2"
-            android:ellipsize="end" />
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean."
+            android:textSize="14sp" />
 
 
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="50dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_marginLeft="300dp"
         android:orientation="vertical"
-        android:layout_alignParentEnd="true">
+        android:layout_marginRight="10dp"
+        >
 
         <TextView
             android:id="@+id/time"
@@ -82,8 +80,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:src="@drawable/star2_icon__" />
-
-
     </LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>
