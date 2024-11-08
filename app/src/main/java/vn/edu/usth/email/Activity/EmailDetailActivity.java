@@ -130,25 +130,5 @@ public class EmailDetailActivity extends AppCompatActivity {
         }).start();
     }
 
-    // Updated authorization request with the GMAIL_MODIFY scope
-    private void authorizeUser() {
-        List<Scope> requestedScopes = Arrays.asList(
-                new Scope(GmailScopes.GMAIL_READONLY),
-                new Scope(GmailScopes.GMAIL_LABELS),
-                new Scope(GmailScopes.GMAIL_MODIFY),
-                new Scope(GmailScopes.MAIL_GOOGLE_COM)
-        );
 
-        AuthorizationRequest authorizationRequest = AuthorizationRequest.builder()
-                .setRequestedScopes(requestedScopes)
-                .build();
-
-        Identity.getAuthorizationClient(this)
-                .authorize(authorizationRequest)
-                .addOnSuccessListener(authorizationResult -> {
-                    accessToken = authorizationResult.getAccessToken();
-                    Log.i("EmailDetailActivity", "Authorization successful with modify scope");
-                })
-                .addOnFailureListener(e -> Log.e("EmailDetailActivity", "Failed to authorize with modify scope", e));
-    }
 }
