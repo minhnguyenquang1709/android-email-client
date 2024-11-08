@@ -1,5 +1,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/search"
+        android:title="Main"
+        android:icon="@drawable/ic_menu"/>
+    <item
         android:id="@+id/Starred"
         android:title="Starred"
         android:icon="@drawable/star2_icon__"/>

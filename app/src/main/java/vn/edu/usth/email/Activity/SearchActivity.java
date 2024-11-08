@@ -62,7 +62,9 @@ public class SearchActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
 
-                if (itemId == R.id.Starred) {
+                if (itemId == R.id.search) {
+                    startActivity(new Intent(SearchActivity.this, SearchActivity.class));
+                }else if (itemId == R.id.Starred) {
                     startActivity(new Intent(SearchActivity.this, StarredActivity.class));
                 } else if (itemId == R.id.nav_sent) {
                     startActivity(new Intent(SearchActivity.this, SendActivity.class));
