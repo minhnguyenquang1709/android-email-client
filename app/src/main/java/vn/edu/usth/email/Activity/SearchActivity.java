@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.gson.GsonFactory;
@@ -64,6 +65,7 @@ public class SearchActivity extends AppCompatActivity {
 
         // Set up hamburger icon to open drawer
         menuButton.setOnClickListener(view -> drawerLayout.openDrawer(GravityCompat.START));
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         // Handle navigation item clicks
 //        navigationView.setNavigationItemSelectedListener(item -> {
@@ -80,6 +82,22 @@ public class SearchActivity extends AppCompatActivity {
 //                // Add other cases for more items
 //            }
 //            drawerLayout.closeDrawer(GravityCompat.START);
+//            return true;
+//        });
+
+        // Set a listener for navigation item selection
+//        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+//            switch (item.getItemId()) {
+//                case R.id.nav_mail:
+//                    // Handle Mail action
+//                    break;
+//                case R.id.nav_calendar:
+//                    // Handle Calendar action
+//                    break;
+//                case R.id.nav_contacts:
+//                    // Handle Contacts action
+//                    break;
+//            }
 //            return true;
 //        });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
