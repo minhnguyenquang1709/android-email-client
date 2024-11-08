@@ -3,6 +3,7 @@ package vn.edu.usth.email.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import androidx.annotation.Nullable;
@@ -54,6 +55,26 @@ public class SearchActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected( MenuItem item) {
+                int itemId = item.getItemId();
+
+                if (itemId == R.id.Starred) {
+                    startActivity(new Intent(SearchActivity.this, StarredActivity.class));
+                } else if (itemId == R.id.nav_sent) {
+                    startActivity(new Intent(SearchActivity.this, SendActivity.class));
+                } else if (itemId == R.id.nav_inbox) {
+                    startActivity(new Intent(SearchActivity.this, TrashActivity.class));
+                } else if (itemId == R.id.helpnfeedback) {
+                    startActivity(new Intent(SearchActivity.this, HelpFeedbackActivity.class));
+                }
+
+                // Close the drawer after an item is clicked
+                drawerLayout.closeDrawers();
+                return true;
+            }
+        });
         // Set up drawer open with hamburger icon
         menuButton.setOnClickListener(view -> drawerLayout.openDrawer(GravityCompat.START));
 
