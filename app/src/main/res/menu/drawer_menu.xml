@@ -21,5 +21,10 @@
         android:id="@+id/helpnfeedback"
         android:title="Help &amp; Feedback"
         android:icon="@drawable/help_icon"/>
+
+    <item
+        android:id="@+id/video_icon"
+        android:icon="@drawable/ic_video"
+        android:title="@string/video_icon" />
     <!-- Add other items as needed -->
 </menu>

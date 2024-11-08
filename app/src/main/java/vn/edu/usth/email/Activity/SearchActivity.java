@@ -74,10 +74,21 @@ public class SearchActivity extends AppCompatActivity {
                     startActivity(new Intent(SearchActivity.this, HelpFeedbackActivity.class));
                 }
 
+
                 // Close the drawer after an item is clicked
                 drawerLayout.closeDrawers();
                 return true;
             }
+        });
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+            if (itemId == R.id.mail_icon) {
+                startActivity(new Intent(SearchActivity.this, SearchActivity.class));
+            } else if (itemId == R.id.video_icon) {
+                startActivity(new Intent(SearchActivity.this, GeneralSettingActivity.class));
+            }
+            return true;
         });
         // Set up drawer open with hamburger icon
         menuButton.setOnClickListener(view -> drawerLayout.openDrawer(GravityCompat.START));
