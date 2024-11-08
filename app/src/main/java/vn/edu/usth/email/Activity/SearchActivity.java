@@ -62,7 +62,7 @@ public class SearchActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
 
-                if (itemId == R.id.search) {
+                if (itemId == R.id.search && !(SearchActivity.this instanceof SearchActivity)) {
                     startActivity(new Intent(SearchActivity.this, SearchActivity.class));
                 }else if (itemId == R.id.Starred) {
                     startActivity(new Intent(SearchActivity.this, StarredActivity.class));
@@ -83,13 +83,19 @@ public class SearchActivity extends AppCompatActivity {
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
+
+            // Navigate to SearchActivity only if it's not already the current activity
             if (itemId == R.id.mail_icon) {
-                startActivity(new Intent(SearchActivity.this, SearchActivity.class));
+                // If SearchActivity is already open, avoid opening it again
+                if (!(this instanceof SearchActivity)) {
+                    startActivity(new Intent(SearchActivity.this, SearchActivity.class));
+                }
             } else if (itemId == R.id.video_icon) {
                 startActivity(new Intent(SearchActivity.this, GeneralSettingActivity.class));
             }
             return true;
         });
+
         // Set up drawer open with hamburger icon
         menuButton.setOnClickListener(view -> drawerLayout.openDrawer(GravityCompat.START));
 

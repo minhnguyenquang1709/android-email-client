@@ -7,6 +7,6 @@
 
     <item
         android:id="@+id/video_icon"
-        android:icon="@drawable/ic_video"
+        android:icon="@drawable/ic_setting"
         android:title="@string/video_icon" />
 </menu>
