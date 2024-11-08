@@ -246,8 +246,6 @@ public class AuthActivity extends AppCompatActivity {
 
                             }
 
-//
-
                             String accessToken = accessTokenList.get(0);
                             try {
                                 service = initializeGmailApiService(accessToken);
@@ -294,81 +292,4 @@ public class AuthActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    private void fetchEmailsMessages(String userId, Gmail service, Handler handler){
-//        Log.i("fetching", "start getting email messages");
-//        Thread bgThread = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                // get email messages
-//                ListMessagesResponse listResponse = null;
-//                try {
-//                    listResponse = service.users().messages().list(userId).setQ("MB").execute();
-//                } catch (IOException e) {
-//                    throw new RuntimeException(e);
-//                }
-//                List<Message> messages = listResponse.getMessages();
-//
-//                if(messages == null || messages.isEmpty()){
-//                    Log.i("GmailAPI", "No messages found.");
-//                }else{
-//                    Log.i("GmailAPI", "Messages:");
-//
-//                    for (Message message: messages){
-//                        Message fullMessage = null;
-//                        try {
-//                            fullMessage = service.users().messages().get(userId, message.getId()).execute();
-//                        } catch (IOException e) {
-//                            throw new RuntimeException(e);
-//                        }
-//                        // get the payload
-//                        MessagePart payload = fullMessage.getPayload();
-//
-//                        if (payload != null){
-//                            // get the parts of the message (if it's multipart)
-//                            List<MessagePart> parts = payload.getParts();
-//
-//                            // get the message body
-//                            if (parts == null || parts.isEmpty()) {
-//                                // Get the body of the message directly
-//                                MessagePartBody body = payload.getBody();
-//                                if (body != null){
-//                                    String messageBody = new String(payload.getBody().decodeData());
-//                                    Log.i("Email message","Message Body: " + messageBody);
-//                                } else{
-//                                    Log.e("GmailAPI", "Message body is null.");
-//                                }
-//                            } else {
-//                                // If the message is multipart, iterate through the parts
-//                                for (MessagePart part : parts) {
-//                                    if (part != null){
-//                                        // Check if the part is text/plain or text/html
-//                                        if (part.getMimeType().equals("text/plain")) {
-//                                            String body = new String(part.getBody().decodeData());
-//                                            Log.i("Email message", "Plain Text Body: " + body);
-//                                        } else if (part.getMimeType().equals("text/html")) {
-//                                            String htmlBody = new String(part.getBody().decodeData());
-//                                            Log.i("Email message", "HTML Body: " + htmlBody);
-//                                        }
-//                                    } else{
-//                                        Log.e("GmailAPI", "Part body is null for part: ");
-//                                    }
-//                                }
-//                            }
-//                        } else{
-//                            Log.e("GmailAPI", "No payload");
-////                            Log.i("GmailAPI", message.decodeRaw());
-//                        }
-//                        break;
-//                    }
-//
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("server_response", "check logcat");
-//                    android.os.Message msg = new android.os.Message();
-//                    msg.setData(bundle);
-//                    handler.sendMessage(msg);
-//                }
-//            }
-//        });
-//        bgThread.start();
-//    }
 }

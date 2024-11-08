@@ -1,4 +1,5 @@
-package vn.edu.usth.email.Adapter;// EmailAdapter.java
+package vn.edu.usth.email.Adapter;
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -8,26 +9,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import vn.edu.usth.email.Activity.EmailDetailActivity;
-import vn.edu.usth.email.R;
-import java.util.List;
-
-
 import vn.edu.usth.email.Model.Email;
-
+import vn.edu.usth.email.R;
 import java.util.ArrayList;
+import java.util.List;
 
 public class EmailAdapter extends RecyclerView.Adapter<EmailAdapter.EmailViewHolder> {
 
     private Context context;
     private List<Email> originalEmailList;
     private List<Email> filteredEmailList;
+    private String accessToken;
 
-    public EmailAdapter(Context context, List<Email> emailList) {
+    public EmailAdapter(Context context, List<Email> emailList, String accessToken) {
         this.context = context;
         this.originalEmailList = new ArrayList<>(emailList);
         this.filteredEmailList = new ArrayList<>(emailList);
+        this.accessToken = accessToken;
     }
 
     @NonNull
@@ -50,6 +49,8 @@ public class EmailAdapter extends RecyclerView.Adapter<EmailAdapter.EmailViewHol
             intent.putExtra("senderName", email.getSenderName());
             intent.putExtra("snippet", email.getSnippet());
             intent.putExtra("time", email.getTime());
+            intent.putExtra("messageId", email.getMessageId());
+            intent.putExtra("accessToken", accessToken);
             context.startActivity(intent);
         });
     }
@@ -71,21 +72,5 @@ public class EmailAdapter extends RecyclerView.Adapter<EmailAdapter.EmailViewHol
             time = itemView.findViewById(R.id.time);
             starIcon = itemView.findViewById(R.id.starIcon);
         }
-    }
-
-    // Method to filter the list
-    public void filter(String query) {
-        filteredEmailList.clear();
-        if (query.isEmpty()) {
-            filteredEmailList.addAll(originalEmailList); // Show all if query is empty
-        } else {
-            for (Email email : originalEmailList) {
-                if (email.getSenderName().toLowerCase().contains(query.toLowerCase()) ||
-                        email.getSnippet().toLowerCase().contains(query.toLowerCase())) {
-                    filteredEmailList.add(email);
-                }
-            }
-        }
-        notifyDataSetChanged();
     }
 }
