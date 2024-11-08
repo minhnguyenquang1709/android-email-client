@@ -20,21 +20,6 @@ public class TrashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trash);
 
-        listTrashEmails = findViewById(R.id.trash_recycle_view);
 
-        // Sample data for trash emails
-        trashEmails = new ArrayList<>();
-        trashEmails.add("Deleted Email 1");
-        trashEmails.add("Deleted Email 2");
-        trashEmails.add("Deleted Email 3");
-
-        // Adapter to display the trash emails
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_list_item_1,
-                trashEmails
-        );
-
-        listTrashEmails.setAdapter(adapter);
     }
 }

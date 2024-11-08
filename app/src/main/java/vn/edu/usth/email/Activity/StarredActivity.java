@@ -20,21 +20,5 @@ public class StarredActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_starred);
 
-        listStarredEmails = findViewById(R.id.starred_recycle_view);
 
-        // Sample data for starred emails
-        starredEmails = new ArrayList<>();
-        starredEmails.add("Starred Email 1");
-        starredEmails.add("Starred Email 2");
-        starredEmails.add("Starred Email 3");
-
-        // Adapter to display the starred emails
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_list_item_1,
-                starredEmails
-        );
-
-        listStarredEmails.setAdapter(adapter);
-    }
-}
+}}
