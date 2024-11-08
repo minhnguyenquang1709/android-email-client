@@ -111,5 +111,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
     <string name="search_email" />
     <string name="mail_icon" />
     <string name="video_icon" />
+    <string name="popular_support_post">Popular support post</string>
+    <string name="send_feedback">Send Feedback</string>
 
 </resources>
