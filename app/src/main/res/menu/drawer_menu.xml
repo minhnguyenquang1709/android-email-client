@@ -1,15 +1,21 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/nav_inbox"
-        android:title="Inbox"
-        android:icon="@drawable/ic_trash"/>
+        android:id="@+id/Starred"
+        android:title="Starred"
+        android:icon="@drawable/star2_icon__"/>
+
     <item
         android:id="@+id/nav_sent"
         android:title="Sent"
-        android:icon="@drawable/heart_icon"/>
+        android:icon="@drawable/send"/>
     <item
-        android:id="@+id/nav_drafts"
-        android:title="Drafts"
-        android:icon="@drawable/folder_icon"/>
+        android:id="@+id/nav_inbox"
+        android:title="Inbox"
+        android:icon="@drawable/trash"/>
+
+    <item
+        android:id="@+id/helpnfeedback"
+        android:title="Help &amp; Feedback"
+        android:icon="@drawable/help_icon"/>
     <!-- Add other items as needed -->
 </menu>
