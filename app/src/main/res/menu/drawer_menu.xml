@@ -9,8 +9,8 @@
         android:title="Sent"
         android:icon="@drawable/send"/>
     <item
-        android:id="@+id/nav_inbox"
-        android:title="Inbox"
+        android:id="@+id/trash"
+        android:title="Trash"
         android:icon="@drawable/trash"/>
 
     <item

@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageButton;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -57,14 +59,14 @@ public class SearchActivity extends AppCompatActivity {
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected( MenuItem item) {
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
 
                 if (itemId == R.id.Starred) {
                     startActivity(new Intent(SearchActivity.this, StarredActivity.class));
                 } else if (itemId == R.id.nav_sent) {
                     startActivity(new Intent(SearchActivity.this, SendActivity.class));
-                } else if (itemId == R.id.nav_inbox) {
+                } else if (itemId == R.id.trash) {
                     startActivity(new Intent(SearchActivity.this, TrashActivity.class));
                 } else if (itemId == R.id.helpnfeedback) {
                     startActivity(new Intent(SearchActivity.this, HelpFeedbackActivity.class));
