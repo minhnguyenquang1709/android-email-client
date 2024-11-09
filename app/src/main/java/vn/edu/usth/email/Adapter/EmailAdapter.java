@@ -67,7 +67,7 @@ public class EmailAdapter extends RecyclerView.Adapter<EmailAdapter.EmailViewHol
     public void updateOriginalEmails(List<Email> newEmails) {
         Log.i("EmailAdapter", "updating original email list...");
         for(Email email: newEmails){
-            Log.i("EmailAdapter", newEmails.indexOf(email) + ": " +email.getSenderName());
+            Log.i("EmailAdapter", newEmails.indexOf(email) + ": " +email.getTime());
         }
         originalEmailList.clear();
         originalEmailList.addAll(newEmails);

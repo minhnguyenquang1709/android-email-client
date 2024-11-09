@@ -49,7 +49,6 @@ import vn.edu.usth.email.Utils.EmailMessageDao;
 
 
 public class HomeActivity extends AppCompatActivity {
-
     private EditText searchInput;
     private ImageButton searchButton;
     private RecyclerView recyclerView;
@@ -388,6 +387,7 @@ public class HomeActivity extends AppCompatActivity {
 
         t.start();
     }
+
     private void searchEmailsMessages(String userId, Gmail service, String searchTerm) {
         new Thread(() -> {
             List<Email> emailList = new ArrayList<>();

@@ -65,7 +65,7 @@ public class AuthActivity extends AppCompatActivity {
                 Toast.makeText(AuthActivity.this, content, Toast.LENGTH_SHORT).show();
                 Log.i("Handler", content);
             }
-        };;
+        };
     }
 
     @Override
@@ -158,11 +158,14 @@ public class AuthActivity extends AppCompatActivity {
 //        }
 
         if(credential.getType().equals(GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL)){
+            Log.i("Auth", "GoogleIdTokenCredential");
             // convert the credential object into a GoogleIdTokenCredential
             GoogleIdTokenCredential idTokenCredential = GoogleIdTokenCredential.createFrom(credential.getData());
             // extract GoogleIdTokenCredential
             // Log.i("AuthActivity", "id: " + idTokenCredential.getId()); // the email
             // Log.i("AuthActivity", "idToken: " + idTokenCredential.getIdToken()); // JWT token
+
+            Log.i("Auth", idTokenCredential.toString());
 
             credentialList.add(idTokenCredential);
         }
@@ -184,7 +187,7 @@ public class AuthActivity extends AppCompatActivity {
             try {
                 accessToken = accessTokenList.get(i);
             }catch (IndexOutOfBoundsException e){
-                Log.e("Auth Error", "No corresponding access token");
+                Log.e("Auth Error", "No corresponding access token: " + accessToken);
             }
 
             if(accessToken != null){
@@ -193,7 +196,7 @@ public class AuthActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         String email = tv.getText().toString();
-                        Intent intent = new Intent(AuthActivity.this, HomeActivity.class);
+                        Intent intent = new Intent(AuthActivity.this, WriteActivity.class);
                         intent.putExtra("userId", email);
                         intent.putExtra("accessToken", accessTok);
                         startActivity(intent);
@@ -224,6 +227,7 @@ public class AuthActivity extends AppCompatActivity {
                 new Scope(GmailScopes.MAIL_GOOGLE_COM));
         AuthorizationRequest authorizationRequest = AuthorizationRequest.builder()
                 .setRequestedScopes(requestedScopes)
+                .requestOfflineAccess(getString(R.string.client_id))
                 .build();
 
         Identity.getAuthorizationClient(this)
@@ -232,6 +236,7 @@ public class AuthActivity extends AppCompatActivity {
                         authorizationResult -> {
                             if(authorizationResult.hasResolution()){
                                 // access needs to be granted by the user
+                                Log.i("Auth","access needs to be granted by the user");
                                 PendingIntent pendingIntent = authorizationResult.getPendingIntent();
                                 try {
                                     startIntentSenderForResult(pendingIntent.getIntentSender(),
@@ -239,12 +244,15 @@ public class AuthActivity extends AppCompatActivity {
                                 }catch (IntentSender.SendIntentException e){
                                     Log.e("AuthActivity Error", "Couldn't start Authorization UI: " + e.getLocalizedMessage());
                                 }
+//                                String accessToken = authorizationResult.getAccessToken();
+//                                Log.i("AuthActivity", "accessToken: " + accessToken);
                                 runOnUiThread(()-> updateEmailList());
                             }else{
                                 // access already granted, get access token
                                 String accessToken = authorizationResult.getAccessToken();
                                 Log.i("AuthActivity", "Authorization successful");
-                                Log.i("AuthActivity", "accessToken: " + accessToken);
+//                                Log.i("AuthActivity", "accessToken: " + accessToken);
+//                                Log.i("AuthActivity", "server auth code: " + authorizationResult.getServerAuthCode());
                                 accessTokenList.add(accessToken);
                                 runOnUiThread(()-> updateEmailList());
                             }
@@ -252,8 +260,4 @@ public class AuthActivity extends AppCompatActivity {
                 )
                 .addOnFailureListener(e -> Log.e("AuthActivity", "Failed to authorize", e));
     }
-
-
-
-
 }
