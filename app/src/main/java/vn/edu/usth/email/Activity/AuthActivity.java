@@ -58,6 +58,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
+import vn.edu.usth.email.Helper.GmailServiceHelper;
 import vn.edu.usth.email.R;
 
 public class AuthActivity extends AppCompatActivity {
@@ -239,7 +240,7 @@ public class AuthActivity extends AppCompatActivity {
 
                             String accessToken = accessTokenList.get(0);
                             try {
-                                service = initializeGmailApiService(accessToken);
+                                service = GmailServiceHelper.getService(accessToken);
 
                                 Log.i("Gmail", "Initialized Gmail service instance");
 
@@ -261,21 +262,21 @@ public class AuthActivity extends AppCompatActivity {
     }
 
     // request email data
-    private Gmail initializeGmailApiService(String accessToken) throws GeneralSecurityException, IOException {
-        Log.i("GmailAPI", "start getting email data...");
-        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-        final List<String> SCOPES = Collections.singletonList(GmailScopes.GMAIL_READONLY);
-        final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();;
-
-        Gmail service = new Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, request -> {
-            request.setInterceptor(httpRequest->{
-                // set the access token in the request header
-                httpRequest.getHeaders().setAuthorization("Bearer " + accessToken);
-            });
-        }).build();
-
-        return service;
-    }
+//    private Gmail initializeGmailApiService(String accessToken) throws GeneralSecurityException, IOException {
+//        Log.i("GmailAPI", "start getting email data...");
+//        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+//        final List<String> SCOPES = Collections.singletonList(GmailScopes.GMAIL_READONLY);
+//        final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();;
+//
+//        Gmail service = new Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, request -> {
+//            request.setInterceptor(httpRequest->{
+//                // set the access token in the request header
+//                httpRequest.getHeaders().setAuthorization("Bearer " + accessToken);
+//            });
+//        }).build();
+//
+//        return service;
+//    }
     private void startSearchActivity(String userId, String accessToken) {
         Intent intent = new Intent(AuthActivity.this, SearchActivity.class);
         intent.putExtra("userId", userId);

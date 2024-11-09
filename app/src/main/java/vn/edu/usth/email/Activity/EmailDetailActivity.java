@@ -14,6 +14,8 @@ import com.google.api.client.json.gson.GsonFactory;
 import com.google.api.services.gmail.Gmail;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+
+import vn.edu.usth.email.Helper.GmailServiceHelper;
 import vn.edu.usth.email.R;
 import android.view.View;
 import androidx.appcompat.app.AlertDialog;
@@ -50,7 +52,7 @@ public class EmailDetailActivity extends AppCompatActivity {
         timeView.setText(time);
 
         try {
-            service = initializeGmailApiService(accessToken);
+            service = GmailServiceHelper.getService(accessToken);
         } catch (Exception e) {
             Log.e("EmailDetailActivity", "Failed to initialize Gmail service", e);
         }
@@ -67,14 +69,14 @@ public class EmailDetailActivity extends AppCompatActivity {
                 .show();
     }
 
-    private Gmail initializeGmailApiService(String accessToken) throws GeneralSecurityException, IOException {
-        final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
-        final com.google.api.client.http.javanet.NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-
-        return new Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, request -> {
-            request.getHeaders().setAuthorization("Bearer " + accessToken);
-        }).setApplicationName("YourAppName").build();
-    }
+//    private Gmail initializeGmailApiService(String accessToken) throws GeneralSecurityException, IOException {
+//        final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
+//        final com.google.api.client.http.javanet.NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+//
+//        return new Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, request -> {
+//            request.getHeaders().setAuthorization("Bearer " + accessToken);
+//        }).setApplicationName("YourAppName").build();
+//    }
 
     private void deleteEmail(String messageId) {
         new Thread(() -> {

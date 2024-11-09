@@ -25,7 +25,7 @@
     <!-- Email time -->
     <LinearLayout
         android:id="@+id/mailcontent"
-        android:layout_width="300dp"
+        android:layout_width="299dp"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
@@ -42,7 +42,7 @@
         <!-- Email snippet -->
         <TextView
             android:id="@+id/snippet"
-            android:layout_width="wrap_content"
+            android:layout_width="264dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/title"
             android:layout_marginStart="12dp"
