@@ -121,6 +121,7 @@ public class SearchActivity extends AppCompatActivity {
         // Set search button click listener
         searchButton.setOnClickListener(view -> {
             String searchTerm = searchInput.getText().toString().trim();
+            Log.i("Search", "searchTerm: " + searchTerm);
             fetchEmailsMessages(userId, service, searchTerm);
         });
     }
@@ -162,9 +163,7 @@ public class SearchActivity extends AppCompatActivity {
             fetchEmailsMessages(userId, service, "");
         }
     }
-
-
-
+    
     // Fetch emails based on search term
     private void fetchEmailsMessages(String userId, Gmail service, String searchTerm) {
         new Thread(() -> {
