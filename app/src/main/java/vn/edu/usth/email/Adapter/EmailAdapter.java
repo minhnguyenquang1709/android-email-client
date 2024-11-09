@@ -15,8 +15,9 @@ import java.util.List;
 
 public class EmailAdapter extends RecyclerView.Adapter<EmailAdapter.EmailViewHolder> {
 
+    // Interface for item click listener to handle item clicks
     public interface OnItemClickListener {
-        void onItemClick(String senderName, String snippet, String time, String messageId);
+        void onItemClick(String senderName, String snippet, String time, String messageId, String subject);
     }
 
     private OnItemClickListener listener;
@@ -25,6 +26,7 @@ public class EmailAdapter extends RecyclerView.Adapter<EmailAdapter.EmailViewHol
     private List<Email> filteredEmailList;
     private String accessToken;
 
+    // Constructor to initialize context, email list, and access token
     public EmailAdapter(Context context, List<Email> emailList, String accessToken) {
         this.context = context;
         this.originalEmailList = new ArrayList<>(emailList);
@@ -32,6 +34,7 @@ public class EmailAdapter extends RecyclerView.Adapter<EmailAdapter.EmailViewHol
         this.accessToken = accessToken;
     }
 
+    // Method to set the item click listener
     public void setOnItemClickListener(OnItemClickListener listener) {
         this.listener = listener;
     }
@@ -45,15 +48,26 @@ public class EmailAdapter extends RecyclerView.Adapter<EmailAdapter.EmailViewHol
 
     @Override
     public void onBindViewHolder(@NonNull EmailViewHolder holder, int position) {
+        // Get the email data at the current position
         Email email = filteredEmailList.get(position);
+
+        // Set data to the view holder views
         holder.icon.setText(email.getIcon());
         holder.senderName.setText(email.getSenderName());
         holder.snippet.setText(email.getSnippet());
         holder.time.setText(email.getTime());
 
+        // Set click listener for the item
         holder.itemView.setOnClickListener(v -> {
             if (listener != null) {
-                listener.onItemClick(email.getSenderName(), email.getSnippet(), email.getTime(), email.getMessageId());
+                // Pass the subject along with other details to the listener
+                listener.onItemClick(
+                        email.getSenderName(),
+                        email.getSnippet(),
+                        email.getTime(),
+                        email.getMessageId(),
+                        email.getSubject() // Pass the subject here
+                );
             }
         });
     }
@@ -63,6 +77,7 @@ public class EmailAdapter extends RecyclerView.Adapter<EmailAdapter.EmailViewHol
         return filteredEmailList.size();
     }
 
+    // ViewHolder class to represent each item
     public static class EmailViewHolder extends RecyclerView.ViewHolder {
         TextView icon, senderName, snippet, time;
         ImageView starIcon;

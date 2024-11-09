@@ -30,6 +30,7 @@ import java.util.List;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import vn.edu.usth.email.Adapter.EmailAdapter;
+import vn.edu.usth.email.Helper.GmailServiceHelper;
 import vn.edu.usth.email.Model.Email;
 import vn.edu.usth.email.R;
 
@@ -109,7 +110,7 @@ public class SearchActivity extends AppCompatActivity {
 
         // Initialize Gmail service
         try {
-            service = initializeGmailApiService(accessToken);
+            service = GmailServiceHelper.getService(accessToken);
         } catch (Exception e) {
             Log.e("SearchActivity", "Failed to initialize Gmail service", e);
         }
@@ -162,15 +163,7 @@ public class SearchActivity extends AppCompatActivity {
         }
     }
 
-    // Initialize Gmail API service
-    private Gmail initializeGmailApiService(String accessToken) throws GeneralSecurityException, IOException {
-        final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
-        final com.google.api.client.http.javanet.NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
 
-        return new Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, request -> {
-            request.getHeaders().setAuthorization("Bearer " + accessToken);
-        }).setApplicationName("YourAppName").build();
-    }
 
     // Fetch emails based on search term
     private void fetchEmailsMessages(String userId, Gmail service, String searchTerm) {
@@ -186,12 +179,15 @@ public class SearchActivity extends AppCompatActivity {
                         Message fullMessage = service.users().messages().get(userId, message.getId()).execute();
                         String snippet = fullMessage.getSnippet();
 
+                        // Fetch sender name
                         String senderName = "Unknown Sender";
+                        String subject = "No Subject"; // Default subject in case it's missing
                         if (fullMessage.getPayload() != null && fullMessage.getPayload().getHeaders() != null) {
                             for (MessagePartHeader header : fullMessage.getPayload().getHeaders()) {
                                 if ("From".equalsIgnoreCase(header.getName())) {
                                     senderName = header.getValue();
-                                    break;
+                                } else if ("Subject".equalsIgnoreCase(header.getName())) {
+                                    subject = header.getValue();
                                 }
                             }
                         }
@@ -201,19 +197,21 @@ public class SearchActivity extends AppCompatActivity {
                         String time = new SimpleDateFormat("h:mm a").format(new Date(internalDate));
                         String messageId = message.getId();
 
-                        Email email = new Email(iconText, senderName, snippet, time, messageId);
+                        // Include subject when creating the Email object
+                        Email email = new Email(iconText, senderName, snippet, time, messageId, subject);
                         emailList.add(email);
                     }
 
                     runOnUiThread(() -> {
                         EmailAdapter adapter = new EmailAdapter(this, emailList, accessToken);
-                        adapter.setOnItemClickListener((senderName, snippet, time, messageId) -> {
+                        adapter.setOnItemClickListener((senderName, snippet, time, messageId, subject) -> {
                             Intent intent = new Intent(SearchActivity.this, EmailDetailActivity.class);
                             intent.putExtra("senderName", senderName);
                             intent.putExtra("snippet", snippet);
                             intent.putExtra("time", time);
                             intent.putExtra("messageId", messageId);
                             intent.putExtra("accessToken", accessToken);
+                            intent.putExtra("subject", subject); // Pass the subject to EmailDetailActivity
                             startActivityForResult(intent, 1);
                         });
                         recyclerView.setAdapter(adapter);
@@ -226,4 +224,5 @@ public class SearchActivity extends AppCompatActivity {
             }
         }).start();
     }
+
 }
