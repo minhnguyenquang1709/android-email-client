@@ -47,4 +47,16 @@
     <!-- Auth Activity -->
     <dimen name="auth_icon_mail_height">175dp</dimen>
     <dimen name="auth_message_padding">16dp</dimen>
+
+    <!-- WriteActivity-->
+    <dimen name="marginTop">8dp</dimen>
+    <dimen name="elevation">4dp</dimen>
+    <dimen name="layoutWidth">29dp</dimen>
+    <dimen name="layoutHeight">29dp</dimen>
+    <dimen name="layoutMarginStart">16dp</dimen>
+    <dimen name="layoutMarginTop">3dp</dimen>
+    <dimen name="textSizeEmail">16sp</dimen>
+    <dimen name="yourLayoutMarginStart">8dp</dimen>
+    <dimen name="viewHeight">1dp</dimen>
+    <dimen name="toViewHeight">2dp</dimen>
 </resources>

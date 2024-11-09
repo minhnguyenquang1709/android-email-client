@@ -31,10 +31,9 @@ android {
     }
 
     packaging{
-//        resources {
-//            excludes += ["META-INF/DEPENDENCIES"]
-//        }
         resources.excludes.add("META-INF/DEPENDENCIES")
+        resources.excludes.add("META-INF/LICENSE.md")
+        resources.excludes.add("META-INF/NOTICE.md")
     }
 }
 
@@ -59,4 +58,7 @@ dependencies {
     implementation("com.google.api-client:google-api-client:2.0.0")
     implementation("com.google.oauth-client:google-oauth-client-jetty:1.34.1")
     implementation("com.google.apis:google-api-services-gmail:v1-rev20220404-2.0.0")
+
+    // jakarta mail for building MIME message
+    implementation("com.sun.mail:jakarta.mail:2.0.1")
 }

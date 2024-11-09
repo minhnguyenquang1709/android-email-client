@@ -73,6 +73,8 @@ public class SearchActivity extends AppCompatActivity {
                     startTrashActivity(userId, accessToken);
                 } else if (itemId == R.id.helpnfeedback) {
                     startActivity(new Intent(SearchActivity.this, HelpFeedbackActivity.class));
+                } else if (itemId == R.id.compose){
+                    startWriteActivity(userId, accessToken);
                 }
 
                 // Close the drawer after an item is clicked
@@ -90,7 +92,7 @@ public class SearchActivity extends AppCompatActivity {
                 if (!(this instanceof SearchActivity)) {
                     startActivity(new Intent(SearchActivity.this, SearchActivity.class));
                 }
-            } else if (itemId == R.id.video_icon) {
+            } else if (itemId == R.id.settings_icon) {
                 startActivity(new Intent(SearchActivity.this, GeneralSettingActivity.class));
             }
             return true;
@@ -125,6 +127,13 @@ public class SearchActivity extends AppCompatActivity {
     // Define separate methods for each activity to start
     private void startStarredActivity(String userId, String accessToken) {
         Intent intent = new Intent(SearchActivity.this, StarredActivity.class);
+        intent.putExtra("userId", userId);
+        intent.putExtra("accessToken", accessToken);
+        startActivity(intent);
+    }
+
+    private void startWriteActivity(String userId, String accessToken) {
+        Intent intent = new Intent(SearchActivity.this, WriteActivity.class);
         intent.putExtra("userId", userId);
         intent.putExtra("accessToken", accessToken);
         startActivity(intent);
@@ -166,6 +175,7 @@ public class SearchActivity extends AppCompatActivity {
     // Fetch emails based on search term
     private void fetchEmailsMessages(String userId, Gmail service, String searchTerm) {
         new Thread(() -> {
+            Log.i("fetch messages", "begin fetching email messages...");
             List<Email> emailList = new ArrayList<>();
             try {
                 ListMessagesResponse listResponse = service.users().messages().list(userId).setQ(searchTerm.isEmpty() ? "" : searchTerm).execute();

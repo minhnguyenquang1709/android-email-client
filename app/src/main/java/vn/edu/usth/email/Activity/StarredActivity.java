@@ -116,6 +116,8 @@ public class StarredActivity extends AppCompatActivity {
             NavigationHelper.navigateToActivity(this, TrashActivity.class, userId, accessToken);
         } else if (itemId == R.id.helpnfeedback) {
             startActivity(new Intent(this, HelpFeedbackActivity.class));
+        } else if (itemId == R.id.compose){
+            NavigationHelper.navigateToActivity(this, WriteActivity.class, userId, accessToken);
         }
     }
 
@@ -124,7 +126,7 @@ public class StarredActivity extends AppCompatActivity {
 
         if (itemId == R.id.mail_icon) {
             NavigationHelper.navigateToActivity(this, StarredActivity.class, userId, accessToken);
-        } else if (itemId == R.id.video_icon) {
+        } else if (itemId == R.id.settings_icon) {
             NavigationHelper.navigateToActivity(this, GeneralSettingActivity.class, userId, accessToken);
         }
     }

@@ -6,7 +6,7 @@
         android:title="@string/mail_icon" />
 
     <item
-        android:id="@+id/video_icon"
+        android:id="@+id/settings_icon"
         android:icon="@drawable/ic_setting"
         android:title="@string/video_icon" />
 </menu>

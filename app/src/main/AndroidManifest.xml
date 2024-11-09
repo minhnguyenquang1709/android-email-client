@@ -37,10 +37,8 @@
             android:exported="false" /><activity
         android:name=".Activity.HelpFeedbackActivity"
         android:exported="false" />
-        <activity android:name=".Activity.GeneralSettingActivity">
-            <!-- Optional: Define launchMode or other settings -->
-        </activity>
-
+        <activity android:name=".Activity.GeneralSettingActivity"/>
+        <activity android:name=".Activity.WriteActivity"/>
 
     </application>
 

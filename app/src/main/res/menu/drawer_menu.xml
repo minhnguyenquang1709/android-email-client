@@ -22,4 +22,9 @@
         android:title="Help &amp; Feedback"
         android:icon="@drawable/help_icon"/>
 
+    <item
+        android:id="@+id/compose"
+        android:title="Compose"
+        android:icon="@drawable/ic_compose"/>
+
 </menu>
