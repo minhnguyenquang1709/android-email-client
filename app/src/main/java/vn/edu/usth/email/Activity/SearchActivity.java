@@ -163,7 +163,7 @@ public class SearchActivity extends AppCompatActivity {
             fetchEmailsMessages(userId, service, "");
         }
     }
-    
+
     // Fetch emails based on search term
     private void fetchEmailsMessages(String userId, Gmail service, String searchTerm) {
         new Thread(() -> {
