@@ -25,7 +25,7 @@
     <!-- Email time -->
     <LinearLayout
         android:id="@+id/mailcontent"
-        android:layout_width="299dp"
+        android:layout_width="266dp"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
@@ -57,20 +57,21 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="80dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_marginRight="10dp"
-        >
+        android:layout_weight="1">
 
         <TextView
             android:id="@+id/time"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_alignParentEnd="true"
             android:text="8:00 AM"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textAlignment="center"/>
 
         <!-- Star icon -->
         <ImageView
@@ -78,7 +79,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:src="@drawable/star2_icon__" />
     </LinearLayout>
 

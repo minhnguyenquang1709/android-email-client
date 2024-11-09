@@ -160,24 +160,8 @@ public class AuthActivity extends AppCompatActivity {
     private void handleSignIn(GetCredentialResponse result) {
         // Handle the successfully returned credential.
         Credential credential = result.getCredential();
-        if (credential instanceof PublicKeyCredential) {
-            String responseJson = ((PublicKeyCredential) credential).getAuthenticationResponseJson();
-            Toast.makeText(this, "PublicKeyCredential received: " + responseJson, Toast.LENGTH_LONG).show();
-            // Share responseJson i.e. a GetCredentialResponse on your server to validate and authenticate
-        } else if (credential instanceof PasswordCredential) {
-            String username = ((PasswordCredential) credential).getId();
-            String password = ((PasswordCredential) credential).getPassword();
-            Toast.makeText(this, "Username: " + username + ", Password: " + password, Toast.LENGTH_LONG).show();
-            // Use id and password to send to your server to validate and authenticate
-        } else {
-            // Catch any unrecognized credential type here.
-            Log.i("AuthActivity", "Unexpected type of credential: " + result.toString());
-
-        }
-
 
         if(credential.getType().equals(GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL)){
-            // convert the credential object into a GoogleIdTokenCredential
             GoogleIdTokenCredential idTokenCredential = GoogleIdTokenCredential.createFrom(credential.getData());
 
             credentialList.add(idTokenCredential);
@@ -233,7 +217,7 @@ public class AuthActivity extends AppCompatActivity {
                                 // logic to get data
                                 String accessToken = authorizationResult.getAccessToken();
                                 Log.i("AuthActivity", "Authorization successful");
-                                Log.i("AuthActivity", "accessToken: " + accessToken);
+//                                Log.i("AuthActivity", "accessToken: " + accessToken);
                                 accessTokenList.add(accessToken);
 
                             }
@@ -261,22 +245,6 @@ public class AuthActivity extends AppCompatActivity {
                 .addOnFailureListener(e -> Log.e("AuthActivity", "Failed to authorize", e));
     }
 
-    // request email data
-//    private Gmail initializeGmailApiService(String accessToken) throws GeneralSecurityException, IOException {
-//        Log.i("GmailAPI", "start getting email data...");
-//        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-//        final List<String> SCOPES = Collections.singletonList(GmailScopes.GMAIL_READONLY);
-//        final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();;
-//
-//        Gmail service = new Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, request -> {
-//            request.setInterceptor(httpRequest->{
-//                // set the access token in the request header
-//                httpRequest.getHeaders().setAuthorization("Bearer " + accessToken);
-//            });
-//        }).build();
-//
-//        return service;
-//    }
     private void startSearchActivity(String userId, String accessToken) {
         Intent intent = new Intent(AuthActivity.this, SearchActivity.class);
         intent.putExtra("userId", userId);

@@ -72,15 +72,6 @@ public class EmailDetailActivity extends AppCompatActivity {
                 .show();
     }
 
-//    private Gmail initializeGmailApiService(String accessToken) throws GeneralSecurityException, IOException {
-//        final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance();
-//        final com.google.api.client.http.javanet.NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
-//
-//        return new Gmail.Builder(HTTP_TRANSPORT, JSON_FACTORY, request -> {
-//            request.getHeaders().setAuthorization("Bearer " + accessToken);
-//        }).setApplicationName("YourAppName").build();
-//    }
-
     private void deleteEmail(String messageId) {
         new Thread(() -> {
             try {

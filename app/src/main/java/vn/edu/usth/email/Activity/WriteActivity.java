@@ -126,11 +126,13 @@ public class WriteActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
+                    finish();
                 }
                 else{
                     Log.e("Compose Error", "Couldn't make MIME message!");
                 }
             }
+
         });
 
         backButton.setOnClickListener(new View.OnClickListener() {

@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ImageButton;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +33,7 @@ public class SendActivity extends AppCompatActivity {
     private String userId;
     private String accessToken;
     private EmailAdapter adapter;
+    private TextView avatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,10 @@ public class SendActivity extends AppCompatActivity {
 
         userId = getIntent().getStringExtra("userId");
         accessToken = getIntent().getStringExtra("accessToken");
+
+        avatar = findViewById(R.id.avatar_icon);
+        // set avatar icon
+        avatar.setText(userId.substring(0,1).toUpperCase());
 
         if (userId == null || accessToken == null) {
             Log.e(TAG, "User ID or Access Token is missing.");

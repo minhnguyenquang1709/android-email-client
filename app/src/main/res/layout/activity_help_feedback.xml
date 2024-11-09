@@ -42,6 +42,7 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:padding="5dp"
+        android:layout_margin="10dp"
         android:text="@string/popular_support_post"
         android:textColor="#000000"
         android:textSize="20sp"
@@ -54,6 +55,7 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:padding="10dp"
+        android:layout_marginTop="10dp"
         android:text="Backup tool for Gmail"
         android:textColor="#000000"
         android:textSize="16sp" />
@@ -63,6 +65,7 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:padding="10dp"
+        android:layout_marginTop="10dp"
         android:text="Change password for Gmail"
         android:textColor="#000000"
         android:textSize="16sp" />
@@ -72,6 +75,7 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:padding="10dp"
+        android:layout_marginTop="10dp"
         android:text="Add gmail or phone number to backup"
         android:textColor="#000000"
         android:textSize="16sp" />
@@ -80,6 +84,7 @@
         android:layout_height="wrap_content"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
+        android:layout_marginTop="10dp"
         android:padding="10dp"
         android:text="@string/popular_support_post"
         android:textColor="#000000"
@@ -96,7 +101,7 @@
 
         android:iconifiedByDefault="false"
         android:background="@drawable/search_view_background"
-        android:layout_margin="8dp"
+        android:layout_margin="15dp"
         android:padding="8dp"
         android:textColorHint="#888888" />
 

@@ -61,7 +61,7 @@
                 android:layout_margin="10dp"/>
 
             <!-- Avatar Icon -->
-            <ImageButton
+            <TextView
                 android:id="@+id/avatar_icon"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
@@ -70,8 +70,9 @@
                 android:background="@drawable/circular_background"
                 android:contentDescription="@string/profile"
                 android:scaleType="centerCrop"
-                android:src="@drawable/profile_picture0"
-                android:clipToOutline="true" />
+                android:textSize="18sp"
+                android:textColor="@android:color/white"
+                android:gravity="center" />
 
         </androidx.appcompat.widget.Toolbar>
 
