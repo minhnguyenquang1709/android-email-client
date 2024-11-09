@@ -35,6 +35,7 @@ public class EmailDetailActivity extends AppCompatActivity {
         senderNameView = findViewById(R.id.sender_name);
         snippetView = findViewById(R.id.snippet);
         timeView = findViewById(R.id.time);
+        String subject = getIntent().getStringExtra("subject");
         ImageButton deleteButton = findViewById(R.id.delete_btn);
         ImageView backButton = findViewById(R.id.back_button);
 
@@ -51,6 +52,8 @@ public class EmailDetailActivity extends AppCompatActivity {
         snippetView.setText(snippet);
         timeView.setText(time);
 
+        TextView titleTextView = findViewById(R.id.title);
+        titleTextView.setText(subject);
         try {
             service = GmailServiceHelper.getService(accessToken);
         } catch (Exception e) {
