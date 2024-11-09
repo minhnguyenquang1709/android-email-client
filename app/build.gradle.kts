@@ -31,10 +31,9 @@ android {
     }
 
     packaging{
-//        resources {
-//            excludes += ["META-INF/DEPENDENCIES"]
-//        }
         resources.excludes.add("META-INF/DEPENDENCIES")
+        resources.excludes.add("META-INF/LICENSE.md")
+        resources.excludes.add("META-INF/NOTICE.md")
     }
     buildFeatures {
         viewBinding = true
@@ -70,4 +69,7 @@ dependencies {
 
     implementation("androidx.room:room-runtime:$roomVersion")
     annotationProcessor("androidx.room:room-compiler:$roomVersion")
+
+    // jakarta mail for building MIME message
+    implementation("com.sun.mail:jakarta.mail:2.0.1")
 }
