@@ -13,6 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
@@ -61,19 +62,19 @@ public class SendActivity extends AppCompatActivity {
         fetchEmails("label:sent");
 
         NavigationView navigationView = findViewById(R.id.nav_view);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
 
                 if (itemId == R.id.search) {
-                    startActivity(new Intent(SendActivity.this, SearchActivity.class));
-                }else if (itemId == R.id.Starred) {
-                    startActivity(new Intent(SendActivity.this, StarredActivity.class));
+                    startSearchActivity(userId, accessToken);
                 } else if (itemId == R.id.nav_sent) {
-                    startActivity(new Intent(SendActivity.this, SendActivity.class));
+                    startStarredActivity(userId, accessToken);
                 } else if (itemId == R.id.trash) {
-                    startActivity(new Intent(SendActivity.this, TrashActivity.class));
+                    startTrashActivity(userId, accessToken);
                 } else if (itemId == R.id.helpnfeedback) {
                     startActivity(new Intent(SendActivity.this, HelpFeedbackActivity.class));
                 }
@@ -83,6 +84,22 @@ public class SendActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            // Navigate to SearchActivity only if it's not already the current activity
+            if (itemId == R.id.mail_icon) {
+                // If SearchActivity is already open, avoid opening it again
+                if (!(this instanceof SendActivity)) {
+                    startActivity(new Intent(SendActivity.this, SendActivity.class));
+                }
+            } else if (itemId == R.id.video_icon) {
+                startActivity(new Intent(SendActivity.this, GeneralSettingActivity.class));
+            }
+            return true;
+        });
+
         menuButton.setOnClickListener(view -> drawerLayout.openDrawer(GravityCompat.START));
     }
 
@@ -134,4 +151,25 @@ public class SendActivity extends AppCompatActivity {
         }
         return "Unknown Sender";
     }
+    private void startSearchActivity(String userId, String accessToken) {
+        Intent intent = new Intent(SendActivity.this, StarredActivity.class);
+        intent.putExtra("userId", userId);
+        intent.putExtra("accessToken", accessToken);
+        startActivity(intent);
+    }
+
+    private void startStarredActivity(String userId, String accessToken) {
+        Intent intent = new Intent(SendActivity.this, SendActivity.class);
+        intent.putExtra("userId", userId);
+        intent.putExtra("accessToken", accessToken);
+        startActivity(intent);
+    }
+
+    private void startTrashActivity(String userId, String accessToken) {
+        Intent intent = new Intent(SendActivity.this, TrashActivity.class);
+        intent.putExtra("userId", userId);
+        intent.putExtra("accessToken", accessToken);
+        startActivity(intent);
+    }
+
 }

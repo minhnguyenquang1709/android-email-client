@@ -13,6 +13,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.json.gson.GsonFactory;
@@ -59,19 +60,21 @@ public class StarredActivity extends AppCompatActivity {
         fetchEmails("label:starred");
 
         NavigationView navigationView = findViewById(R.id.nav_view);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int itemId = item.getItemId();
 
                 if (itemId == R.id.search) {
-                    startActivity(new Intent(StarredActivity.this, SearchActivity.class));
-                }else if (itemId == R.id.Starred) {
-                    startActivity(new Intent(StarredActivity.this, StarredActivity.class));
+                    startSearchActivity(userId, accessToken);
                 } else if (itemId == R.id.nav_sent) {
-                    startActivity(new Intent(StarredActivity.this, SendActivity.class));
+                    startSendActivity(userId, accessToken);
                 } else if (itemId == R.id.trash) {
-                    startActivity(new Intent(StarredActivity.this, TrashActivity.class));
+                    startTrashActivity(userId, accessToken);
                 } else if (itemId == R.id.helpnfeedback) {
                     startActivity(new Intent(StarredActivity.this, HelpFeedbackActivity.class));
                 }
@@ -80,6 +83,21 @@ public class StarredActivity extends AppCompatActivity {
                 drawerLayout.closeDrawers();
                 return true;
             }
+        });
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            // Navigate to SearchActivity only if it's not already the current activity
+            if (itemId == R.id.mail_icon) {
+                // If SearchActivity is already open, avoid opening it again
+                if (!(this instanceof StarredActivity)) {
+                    startActivity(new Intent(StarredActivity.this, StarredActivity.class));
+                }
+            } else if (itemId == R.id.video_icon) {
+                startActivity(new Intent(StarredActivity.this, GeneralSettingActivity.class));
+            }
+            return true;
         });
         menuButton.setOnClickListener(view -> drawerLayout.openDrawer(GravityCompat.START));
     }
@@ -131,5 +149,25 @@ public class StarredActivity extends AppCompatActivity {
             }
         }
         return "Unknown Sender";
+    }
+    private void startSearchActivity(String userId, String accessToken) {
+        Intent intent = new Intent(StarredActivity.this, SearchActivity.class);
+        intent.putExtra("userId", userId);
+        intent.putExtra("accessToken", accessToken);
+        startActivity(intent);
+    }
+
+    private void startSendActivity(String userId, String accessToken) {
+        Intent intent = new Intent(StarredActivity.this, SendActivity.class);
+        intent.putExtra("userId", userId);
+        intent.putExtra("accessToken", accessToken);
+        startActivity(intent);
+    }
+
+    private void startTrashActivity(String userId, String accessToken) {
+        Intent intent = new Intent(StarredActivity.this, TrashActivity.class);
+        intent.putExtra("userId", userId);
+        intent.putExtra("accessToken", accessToken);
+        startActivity(intent);
     }
 }

@@ -121,15 +121,6 @@ public class AuthActivity extends AppCompatActivity {
             .addCredentialOption(getSignInWithGoogleOption)
             .build();
 
-        // build a new authorized API client service
-//        try {
-//            initializeGmailApiService();
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        } catch (GeneralSecurityException e) {
-//            throw new RuntimeException(e);
-//        }
-
 
         // click on the view -> start authentication
         boxAddAddress = findViewById(R.id.box_add_address);
